@@ -141,6 +141,7 @@ header .container {
     padding: 2px;
     outline: 0;
     margin-left: 10px;
+    background-color: white;
 }
 .products-box {
     width: 100%;
