@@ -47,11 +47,17 @@
         <div class="container">
             <div class="login-box">
                 <h1> FAZER LOGIN </h1>
-                <form action="" method="POST">
+                <form action="" method="POST" onsubmit="return verificarLogin()" name="fazerLogin">
+                    <div class="row-center">
+                        <h3 class="alert"> Alerta </h3>
+                    </div>
+
                     <label for="login-email"> E-mail: </label>
                     <input type="email" name="login-email" class="text-area">
+
                     <label for="login-pass"> Senha:  </label>
                     <input type="password" name="login-pass" class="text-area">
+
                     <div class="row-center">
                         <input type="submit" value="ENTRAR" class="login-button">
                     </div>
@@ -101,5 +107,6 @@
 
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/scriptMenu.js"></script>
+    <script src="assets/js/validarLogin.js"></script>
 </body>
 </html>

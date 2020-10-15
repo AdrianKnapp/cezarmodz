@@ -87,3 +87,43 @@ body{
     margin: 20px;
     margin-bottom: 0;
 }
+.alert{
+    font-size: 15px;
+    font-weight: 400;
+    margin-top: 0px;
+    color: rgb(255, 46, 46);
+    position: absolute;
+    display: none ;
+}
+@media(max-width: 500px){
+    .login-box h1 {
+        font-size: 30px;
+        text-align: center;
+    }
+    .final-login h4 {
+        margin: 20px 5px;
+        margin-bottom: 0;
+    }
+}
+@media(max-width: 438px){
+    .login-box h1 {
+        font-size: 25px;
+        text-align: center;
+    }
+    .final-login h4 {
+        margin: 10px;
+        margin-bottom: 0;
+    }
+    .final-login {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 0;
+    }
+    .login-button{
+        margin-bottom: 10px;
+    }
+    .login-box label{
+        font-size: 14px;
+    }
+}
