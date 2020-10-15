@@ -99,10 +99,15 @@ body{
     .login-box h1 {
         font-size: 30px;
         text-align: center;
+        margin-bottom: 8px;
     }
     .final-login h4 {
         margin: 20px 5px;
         margin-bottom: 0;
+    }
+    .alert {
+        margin-top: -7px;
+        font-size: 14px;
     }
 }
 @media(max-width: 438px){
