@@ -145,8 +145,8 @@ header .container {
 }
 .select {
     -webkit-appearance: none;  /* Remove estilo padrão do Chrome */
-   -moz-appearance: none; /* Remove estilo padrão do FireFox */
-   appearance: none; /* Remove estilo padrão do FireFox*/
+    -moz-appearance: none; /* Remove estilo padrão do FireFox */
+    appearance: none; /* Remove estilo padrão do FireFox*/
     font-family: 'Montserrat', sans-serif;
     padding: 2px;
     outline: 0;
