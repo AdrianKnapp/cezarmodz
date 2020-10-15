@@ -27,6 +27,10 @@ body {
     width: 100%;
     height: 100px;
 }
+.space-150{
+    width: 100%;
+    height: 150px;
+}
 .row {
     width: 100%;
     display: flex;

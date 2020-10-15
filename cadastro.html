@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CezarModz</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/styleHome.css">
+    <link rel="stylesheet" href="assets/css/styleProduct.css">
+    <link rel="stylesheet" href="assets/css/styleLogin.css">
+    <link rel="stylesheet" href="assets/css/styleCadastro.css">
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="">
+                    <img src="assets/img/LogoCezar5.png" alt="" width="130px">
+                </a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <div class="menuMobile">
+                        <img src="assets/img/menu.svg" alt="" width="40px" class="img-button">
+                    </div>
+                    <ul class="anime">
+                        <a href="index.html">
+                            <li> INÍCIO </li>
+                        </a>
+                        <a href="">
+                            <li> SOBRE NÓS </li>
+                        </a>
+                        <a href="">
+                            <li> DÚVIDAS </li>
+                        </a>
+                        <a href="cadastro.html">
+                            <li> MINHA CONTA </li>
+                        </a>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="space-150"></div>
+
+
+
+
+
+
+    <section id="login">
+        <div class="container">
+            <div class="login-box">
+                <h1> CADASTRE-SE </h1>
+                <form action="" method="POST" name="cadastrar" onsubmit="return validarCadastro()">
+                    <div class="row-center">
+                        <h3 class="alert"> Alerta </h3>
+                    </div>
+                    <label for="cadastro-name"> Nome: </label>
+                    <input type="text" name="cadastro-name" class="text-area" maxlength="50" pattern="[ a-zA-Z0-9]+">
+
+                    <label for="cadastro-sobrenome"> Sobrenome: </label>
+                    <input type="text" name="cadastro-sobrenome" class="text-area">
+
+                    <div class="row data-nascimento">
+                        <label for="data-nascimento"> Data Nascimento: </label>
+                        <input type="date" name="data-nascimento">
+                    </div>
+
+                    <label for="cadastro-email"> E-mail: </label>
+                    <input type="email" name="cadastro-email" class="text-area">
+
+                    <label for="cadastro-pass"> Senha:  </label>
+                    <input type="password" name="cadastro-pass" class="text-area">
+
+                    <label for="second-cadastro-pass"> Senha:  </label>
+                    <input type="password" name="second-cadastro-pass" class="text-area">
+
+                    <div class="row-center">
+                        <input type="submit" value="CADASTRAR" class="login-button">
+                    </div>
+                    <div class="row-center final-login">
+                        <a href="login.html">
+                            <h4> Já possiu um login? </h4>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <div class="space-100"></div>
+    <footer id="footer">
+        <div class="container">
+            <div class="row-center">
+                <h1> CONTATO </h1>
+            </div>
+            <div class="row-center">
+                <h3> contato@cezarmodz.com.br </h3>
+            </div>
+            <div class="row-center">
+                <h1> REDES SOCIAIS </h1>
+            </div>
+            <div class="row-center">
+                <a href="">
+                    <img src="assets/img/instagram.svg" alt="" >
+                </a>
+                <a href="">
+                    <img src="assets/img/youtube.svg" alt="" >
+                </a>
+            </div>
+        </div>
+        <div class="container credits">
+            <h4> Todos os direitos reservados - CezarModz </h4>
+            <h4> Desenvolvido por @vibeknapp </h4>
+        </div>
+    </footer>
+
+
+
+
+
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/scriptMenu.js"></script>
+    <script src="assets/js/validarCadastro.js"></script>
+</body>
+</html>
