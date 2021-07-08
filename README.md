@@ -1,6 +1,6 @@
 ## CezarModz
 
-Hello! this is a big project, who I've did to a client some months ago. CezarModz is an e-commerce,selling GTA V accounts about 2 years ago. In this job, I've learned the most part of my knews, like advanced PHP, Bootstrap, JavaScript, Jquery, Payment API, and some hard techniques about CSS.
+Hello! this is a big project, who I've did to a client some months ago. CezarModz is an e-commerce, selling GTA V accounts about 2 years ago. In this job, I've learned the most part of my knowledges, like advanced PHP, Bootstrap, JavaScript, Jquery, Payment API, and some hard techniques about CSS.
 
 ## Be atemption
 
