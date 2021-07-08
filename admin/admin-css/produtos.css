@@ -1,0 +1,120 @@
+.search{
+    height: 50px;
+    margin: 0 !important;
+}
+.search-button{
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+.search-button:hover{
+    transform: scale(1.05);
+}
+.search-button img{
+    width: 70%;
+}
+.input-area{
+    display: flex;
+    border: 1px solid #6b6b6b;
+    border-radius: 3px;
+    overflow: hidden;
+    padding-left:5px;
+    padding-right:3px;
+    box-sizing: border-box;
+    margin-left: 10px;
+}
+.int{
+    border: 1px solid #8f8f8f;
+    border-radius: 3px;
+}
+.search input[type=email]{
+    height: 30px;
+    outline: none;
+    border: 0;
+    font-size: 15px;
+}
+.form-search{
+    display: flex;
+    align-items: center;
+}
+.form-search label{
+    font-size: 17px;
+}
+.resultados{
+    overflow: scroll;
+    height: 500px;
+}
+.table-users{
+    width: 100%;
+}
+table{
+    transition: .3s;
+    text-align: center;
+}
+th {
+    position: -webkit-sticky;
+    position: sticky;
+    top: -1px;
+    background-color: #393939;
+    color: white;
+    font-weight: 500;
+    transition: .3s;
+}
+tr{
+    margin: 0 !important;
+}
+.search p{
+    margin: 0;
+    font-size: 17px;
+}
+.search strong{
+    font-weight: 500;
+}
+@media(max-width: 990px){
+    .search {
+        height: auto;
+        flex-direction: column !important;
+    }
+    .btn-header{
+        margin: 5px;
+    }
+}
+@media(max-width: 768px){
+    table{
+        font-size: 15px;
+    }
+}
+@media(max-width: 700px){
+    table{
+        font-size: 15px;
+    }
+    .search input[type=email]{
+        height: 30px;
+        width: 150px;
+        outline: none;
+        border: 0;
+        font-size: 13px;
+    }
+    .form-search label{
+        font-size: 15px;
+    }
+}
+@media(max-width: 574px){
+    table{
+        font-size: 14px;
+    }
+    .search input[type=email]{
+        height: 30px;
+        width: 120px;
+        outline: none;
+        border: 0;
+    }
+}
+@media(max-width: 375px){
+    .search p{
+        font-size: 13px;
+    }
+}

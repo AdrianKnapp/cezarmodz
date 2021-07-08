@@ -1,0 +1,14 @@
+html {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important; /*pode ser transparent também*/
+}
+.sucefull {
+  background-color: rgba(255, 208, 0, 0.664);
+  width: 100%;
+  position: relative;
+  border: 1px solid rgb(255, 174, 0);
+  padding: 10px;
+  text-align: center;
+  color: #1c1c1c;
+  font-size: 17px;
+  margin-top: 10px;
+}

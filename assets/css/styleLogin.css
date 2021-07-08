@@ -1,7 +1,10 @@
+html {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important; /*pode ser transparent também*/
+  }
 body{
     margin: 0;
     padding: 0;
-    background-image: url('../img/fundo-body.png');
+    background-image: url('../img/fundo-body.jpeg');
     font-family: 'Montserrat', sans-serif;
     background-position: center;
     background-size: cover;
@@ -23,7 +26,7 @@ body{
     display: flex;
     flex-direction: column;
     background-color: white;
-    padding: 30px;
+    padding: 40px 20px;
     -webkit-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75);
@@ -38,6 +41,7 @@ body{
 .login-box h1{
     font-size: 40px;
     text-align: center;
+    font-weight: 400;
 }
 .login-box label{
     margin-top: 15px;
@@ -87,6 +91,14 @@ body{
 .final-login h4{
     margin: 20px;
     margin-bottom: 0;
+    font-weight: 400 !important;
+}
+.final-login a{
+    text-decoration: none;
+    color: #1c1c1c;
+}
+.final-login a:hover{
+    text-decoration: underline;
 }
 .alert{
     font-size: 15px;
@@ -95,6 +107,23 @@ body{
     color: rgb(255, 46, 46);
     position: absolute;
     display: none ;
+}
+.loginAlert{
+    font-size: 15px;
+    font-weight: 400;
+    margin-top: 0px;
+    color: rgb(255, 46, 46);
+    position: absolute;
+    display: block;
+}
+.emailAlert{
+    margin-top: 15px;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(255, 208, 0, 0.664);
+    border: 1px solid rgb(255, 174, 0);
+    padding: 5px;
+    font-weight: 400;
 }
 @media(max-width: 500px){
     .login-box h1 {
@@ -110,6 +139,11 @@ body{
         margin-top: -7px;
         font-size: 14px;
     }
+    .loginAlert {
+        margin-top: -7px;
+        font-size: 14px;
+    }
+    
 }
 @media(max-width: 438px){
     .login-box h1 {

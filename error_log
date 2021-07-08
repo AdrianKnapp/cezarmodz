@@ -1,0 +1,43 @@
+[07-Dec-2020 18:53:00 UTC] {"message":"Payment not found","error":"not_found","status":404,"cause":[{"code":2000,"description":"Payment not found","data":null}]}
+[07-Dec-2020 18:53:00 UTC] {"message":"Payment not found","error":"not_found","status":404,"cause":[{"code":2000,"description":"Payment not found","data":null}]}
+[07-Dec-2020 18:57:10 UTC] {"message":"Payment not found","error":"not_found","status":404,"cause":[{"code":2000,"description":"Payment not found","data":null}]}
+[07-Dec-2020 18:57:10 UTC] {"message":"Payment not found","error":"not_found","status":404,"cause":[{"code":2000,"description":"Payment not found","data":null}]}
+[07-Dec-2020 19:02:05 UTC] {"message":"Payment not found","error":"not_found","status":404,"cause":[{"code":2000,"description":"Payment not found","data":null}]}
+[07-Dec-2020 19:02:18 UTC] {"message":"Payment not found","error":"not_found","status":404,"cause":[{"code":2000,"description":"Payment not found","data":null}]}
+[07-Dec-2020 19:03:04 UTC] {"message":"Payment not found","error":"not_found","status":404,"cause":[{"code":2000,"description":"Payment not found","data":null}]}
+[07-Dec-2020 19:03:20 UTC] {"message":"Payment not found","error":"not_found","status":404,"cause":[{"code":2000,"description":"Payment not found","data":null}]}
+[07-Dec-2020 19:05:18 UTC] {"message":"Payment not found","error":"not_found","status":404,"cause":[{"code":2000,"description":"Payment not found","data":null}]}
+[07-Dec-2020 22:20:27 UTC] {
+  "status": 404,
+  "message": "Not Found"
+}
+
+[07-Dec-2020 22:21:05 UTC] {
+  "status": 404,
+  "message": "Not Found"
+}
+
+[07-Dec-2020 22:21:11 UTC] {"message":"Payment not found","error":"not_found","status":404,"cause":[{"code":2000,"description":"Payment not found","data":null}]}
+[07-Dec-2020 22:21:22 UTC] {"message":"Payment not found","error":"not_found","status":404,"cause":[{"code":2000,"description":"Payment not found","data":null}]}
+[08-Dec-2020 15:11:50 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[08-Dec-2020 15:24:23 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[08-Dec-2020 19:04:22 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[08-Dec-2020 20:10:10 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[09-Dec-2020 15:04:57 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[09-Dec-2020 15:29:10 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[09-Dec-2020 16:14:55 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[10-Dec-2020 14:03:35 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[15-Dec-2020 20:47:17 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[15-Dec-2020 20:49:28 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[15-Dec-2020 20:59:09 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[15-Dec-2020 23:55:43 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[16-Dec-2020 16:30:41 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[16-Dec-2020 20:41:40 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[17-Dec-2020 20:22:17 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[18-Dec-2020 21:31:29 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[18-Dec-2020 21:31:33 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[19-Dec-2020 12:30:54 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[19-Dec-2020 12:30:55 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[20-Dec-2020 22:35:59 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[21-Dec-2020 13:07:39 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}
+[22-Dec-2020 10:53:47 UTC] {"message":"security_code_id can't be null","error":"bad_request","status":400,"cause":[{"code":3031,"description":"security_code_id can't be null","data":null}]}

@@ -1,0 +1,15 @@
+{
+  "name": "phpmailer",
+  "homepage": "https://github.com/PHPMailer/PHPMailer",
+  "version": "6.1.8",
+  "_release": "6.1.8",
+  "_resolution": {
+    "type": "version",
+    "tag": "v6.1.8",
+    "commit": "7011482a572db18f73b2a5e9df723d5e364df831"
+  },
+  "_source": "https://github.com/PHPMailer/PHPMailer.git",
+  "_target": "^6.1.8",
+  "_originalSource": "phpmailer",
+  "_direct": true
+}

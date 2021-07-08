@@ -1,0 +1,52 @@
+html {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important; /*pode ser transparent também*/
+}
+.modalMenu {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(255, 255, 255);
+  position: fixed !important;
+  display: none;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  z-index: 400;
+}
+
+.modalMenu a{
+  text-decoration: none;
+}
+.modalMenu ul{
+  list-style: none;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.modalMenu li{
+  list-style: none;
+  margin: 15px;
+  padding: 0 10px;
+  font-size: 23px;
+  color: #1c1c1c;
+  border-bottom: 1px solid #ffa60081;
+  transition: 0.5s;
+}
+.modalMenu li:hover{
+  transform: scale(1.1);
+  border-bottom: 1px solid #ffa600e8;
+}
+.fechar{
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  color: #1c1c1c !important;
+  font-size: 25px;
+  font-weight: 400;
+  background-color: white;
+  outline: 0 !important;
+  cursor: pointer;
+}
+.mostrarMenu{
+  display: flex !important;
+}

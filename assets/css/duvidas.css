@@ -1,0 +1,40 @@
+section{
+  display: flex;
+  justify-content: center;
+}
+section .container{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 30px 30px;
+}
+.duvidas h1{
+  font-size: 23px;
+  font-weight: 400;
+  margin-top: 20px;
+}
+.duvidas h2{
+  font-size: 20px;
+  font-weight: 300;
+}
+.atencao{
+  text-align: center;
+  font-size: 25px !important;
+  margin: 0 !important;
+}
+@media(max-width: 425px){
+  .duvidas h1{
+    font-size: 20px;
+  }
+  .duvidas h2{
+    font-size: 19px;
+  }
+}
+@media(max-width: 375px){
+  .duvidas h1{
+    font-size: 18px;
+  }
+  .duvidas h2{
+    font-size: 17px;
+  }
+}

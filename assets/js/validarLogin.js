@@ -1,30 +1,44 @@
+// Função vinculada ao onSubmit, verificando campos.
 function verificarLogin(){
-
     let alerta = document.querySelector(".alert");
-    let LoginEmail = document.forms["fazerLogin"]["login-email"].value;
-    let loginPass = document.forms["fazerLogin"]["login-pass"].value;
+    let loginEmail = document.forms["fazerLogin"]["email"].value;
+    let loginPass = document.forms["fazerLogin"]["senha"].value;
+    var alertaPhp = document.querySelector(".loginAlert");
 
-    if(LoginEmail == "") {
-        alerta.style.display = "block";
-        alerta.innerHTML = "Digite seu email";
-        return false;
-    } if(LoginPass == "") {
-        alerta.style.display = "block";
-        alerta.innerHTML = "Digite sua senha";
-        return false;
-    } else {
-        return true;
+    // Executa a função de verificar os campos vazios.
+   if(verificarCampos(loginEmail, "Digite seu email")){
+       if(verificarCampos(loginPass, "Digite sua senha")){
+           return true;
+       } return false;
+   } else {
+       return false;
+   }
+   // Função que verifica os campos vazios. 
+   function verificarCampos(nomeVariavel, alertaMensagem){
+        if(nomeVariavel == ""){
+            if (alertaPhp != undefined) {
+                alertaPhp.style.display = 'none';
+                alerta.style.display = "block";
+                alerta.innerHTML = alertaMensagem;
+                return false;
+            } else {
+                alerta.style.display = "block";
+                alerta.innerHTML = alertaMensagem;
+                return false;
+            }
+        }   return true;
     }
 }
 
-
+// Caractéres inválidos. 
 var regexName = "^[ a-zA-Z0-9-Zàèìòùáéíóúâêîôûãõ\b]+$";
 var regexEmail = "^[ a-zA-Z0-9-Zàèìòùáéíóúâêîôûãõ\b.-_]+$";
 
-$('input[name="login-email"]').on('keypress', validateField("login-email", regexEmail));
-$('input[name="login-pass"]').on('keypress', validateField("login-pass", regexName));
+// Executa a função de verificar caractere ao pressionar uma tecla.
+$('input[name="email"]').on('keypress', validateField("email", regexEmail));
+$('input[name="senha"]').on('keypress', validateField("senha", regexName));
 
-
+// Função de verificar caractere.
 function validateField(name, regexValue) {
     $(`input[name="${name}"]`).on('keypress', function() {
       var regex = new RegExp(regexValue);
@@ -36,6 +50,8 @@ function validateField(name, regexValue) {
           {
               $(_this).val(texto.substring(0, (texto.length-1)))
           }
-      }, 0);
+      }, 200);
     });
-  }
+  };
+
+
