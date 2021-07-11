@@ -171,7 +171,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
                                 <form action="processarPagamento.php" method="POST" class='formPagamento'>
                                         <script
                                             src="https://www.mercadopago.com.br/integrations/v1/web-tokenize-checkout.js"
-                                            data-public-key="APP_USR-52b04446-ad5f-4221-9b62-a651efb7c7e8"
+                                            data-public-key=""
                                             data-transaction-amount="<?php echo $anuncioValor; ?>">
                                         </script>
                                 </form>
