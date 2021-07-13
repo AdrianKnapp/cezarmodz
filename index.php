@@ -28,7 +28,7 @@ if(isset($_GET['p'])){
       ";
   }
   $dataQuery = $pdo->query($dataQuery);
-  print_r($dataQuery);
+  /* print_r($dataQuery); */
   if($dataQuery->rowCount() > 0){
     $totalNumPages = $dataQuery->rowCount() / 8;
     $totalNumPages = ceil($totalNumPages);
@@ -420,7 +420,7 @@ if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) 
                                                 } else {
                                                     if(isset($_GET['tipo'])){
                                                         switch ($_GET['tipo']) {
-                                                            case "up":
+                                                            case "conta":
                                                                 echo "disabled";
                                                             break;
                                                             default:
@@ -473,17 +473,29 @@ if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) 
                         switch($anuncioTipo){
                             case 'up':
                                 $anuncioTipo = 'UPGRADE';
+                                $classeTipoAnuncio = 'highlight-upgrade';
                             break;
                             case 'conta':
                                 $anuncioTipo = 'CONTA';
+                                $classeTipoAnuncio = 'highlight-conta';
                             break;
                         }
-                        
+                        /* switch($anuncioPlat){
+                            case 'PS4':
+                                $platformColor = '#3777bf';
+                            break;
+                            case 'XBOX':
+                                $platformColor = '#37bf90';
+                            break;
+                            case 'PC':
+                                $platformColor = '#ff7c1f';
+                            break;
+                        } */
                         echo "
                         <div class='anuncio-box'>
                             <img src='imagens/$anuncioImagem' alt='Imagem'>
                             <div class='row-center'>
-                                <h1> $anuncioTipo $anuncioNome </h1>
+                                <h1>  $anuncioNome </h1>
                             </div>
                             <h4 id='anuncioDesconto'>R$ $anuncioDesconto</h4>
                             <div class='row-center'>
@@ -496,8 +508,10 @@ if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) 
                                     </div>
                                 </a>
                             </div>
-                            <div class='row-right anuncio-plataforma'>
-                                $anuncioPlat
+                            <div class='row-right anuncio-plataforma' >
+                                <span class='$classeTipoAnuncio'> $anuncioTipo </span>
+                                <span> $anuncioPlat </span>
+                                
                             </div>
                         </div>";
                     endforeach;
