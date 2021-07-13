@@ -5,42 +5,45 @@ require 'config.php';
 require 'classes/usuarios.class.php';
 require 'classes/index.class.php';
 
-$query = new Query($pdo);
+$presentUrl =  $_SERVER["REQUEST_URI"];
+
+$page = 0;
+$nextPage = $page + 1;
+switch ($page) {
+    case 0:
+        $previousPage = 0;
+        echo "Página anterior: ".$previousPage."<br>";
+        break;
+    case 1:
+        $previousPage = $page - 1;
+        echo "Página anterior: ".$previousPage."<br>";
+        break;
+}
 
 if(isset($_GET['p'])){
     $page = $_GET['p']; // pegar a paginação.
-    $nextPage = $page + 1;
-    $previousPage = $page - 1;
-    $linesToQuery = 8 * $page; // Buscar a partir de qual linha.
-    $dataQuery = "
-      SELECT id
-      FROM usuarios
-      LIMIT 8 OFFSET $linesToQuery;
-    ";
-  } else {
-    $page = 0;
-    $nextPage = $page + 1;
-    $previousPage = $page - 1;
-    $dataQuery = "
-        SELECT id
-        FROM usuarios
-        LIMIT 8;
-      ";
-  }
-  $dataQuery = $pdo->query($dataQuery);
-  /* print_r($dataQuery); */
-  if($dataQuery->rowCount() > 0){
-    $totalNumPages = $dataQuery->rowCount() / 8;
-    $totalNumPages = ceil($totalNumPages);
-    
-    $numOfIds = $dataQuery->rowCount();
-    $querySucefull = '';
-  } else {
-    $withoutData = "";
-  }
+}
+
+
+if($page == 0) {
+    $linesToQuery = 10 * 0;
+} else {
+    $linesToQuery = 10 * $page;
+    echo "Buscar a partir da linha: ".$linesToQuery;
+}
+
+$query = new Query($pdo, $linesToQuery);
+$structure = '';
+$dbTotalLines =  $query->queryToCountDbDataLines($structure);
+$totalNumPages = ceil($dbTotalLines / 10);
+print_r("Número total de paginas: ".$totalNumPages);
 
 if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) {
-
+    $getsAtUrl = explode("?", $presentUrl);
+    $getsAtUrl = explode("&", $getsAtUrl[1]);
+    echo "<br>";
+    print_r($getsAtUrl);
+    echo "<br>";
     $plat = '';
     $val = '';
     $tipo = '';
@@ -62,9 +65,11 @@ if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) 
         WHERE pt.plataforma = $plat
         AND pt.disponibilidade = 0
         AND pt.tipo = '$tipo'
-        ORDER BY pt.valor $val;
+        ORDER BY pt.valor $val
         ";
         if($query->queryFilter($structure)){
+            $dbTotalLines =  $query->queryToCountDbDataLines($structure);
+            $totalNumPages = ceil($dbTotalLines / 10);
             $buscarAnuncios = $query->queryFilter($structure);
             $_SESSION['anuncios'] = '';
         } else {
@@ -74,9 +79,11 @@ if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) 
         $structure = "
         WHERE pt.plataforma = $plat
         AND pt.disponibilidade = 0
-        ORDER BY pt.valor $val;
+        ORDER BY pt.valor $val
         ";
         if($query->queryFilter($structure)){
+            $dbTotalLines =  $query->queryToCountDbDataLines($structure);
+            $totalNumPages = ceil($dbTotalLines / 10);
             $buscarAnuncios = $query->queryFilter($structure);
             $_SESSION['anuncios'] = '';
         } else {
@@ -89,6 +96,8 @@ if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) 
         AND pt.tipo = '$tipo'
         ";
         if($query->queryFilter($structure)){
+            $dbTotalLines =  $query->queryToCountDbDataLines($structure);
+            $totalNumPages = ceil($dbTotalLines / 10);
             $buscarAnuncios = $query->queryFilter($structure);
             $_SESSION['anuncios'] = '';
         } else {
@@ -98,9 +107,11 @@ if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) 
         $structure = "
         WHERE pt.disponibilidade = 0
         AND pt.tipo = '$tipo'
-        ORDER BY pt.valor $val;
+        ORDER BY pt.valor $val
         ";
         if($query->queryFilter($structure)){
+            $dbTotalLines =  $query->queryToCountDbDataLines($structure);
+            $totalNumPages = ceil($dbTotalLines / 10);
             $buscarAnuncios = $query->queryFilter($structure);
             $_SESSION['anuncios'] = '';
         } else {
@@ -112,6 +123,8 @@ if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) 
             AND pt.disponibilidade = 0
         ";
         if($query->queryFilter($structure)){
+            $dbTotalLines =  $query->queryToCountDbDataLines($structure);
+            $totalNumPages = ceil($dbTotalLines / 10);
             $buscarAnuncios = $query->queryFilter($structure);
             $_SESSION['anuncios'] = '';
         } else {
@@ -120,9 +133,11 @@ if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) 
     } else if($val != ''){
         $structure = "
             WHERE pt.disponibilidade = 0
-            ORDER BY pt.valor $val;
+            ORDER BY pt.valor $val
         ";
         if($query->queryFilter($structure)){
+            $dbTotalLines =  $query->queryToCountDbDataLines($structure);
+            $totalNumPages = ceil($dbTotalLines / 10);
             $buscarAnuncios = $query->queryFilter($structure);
             $_SESSION['anuncios'] = '';
         } else {
@@ -131,9 +146,11 @@ if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) 
     } else if($tipo != ''){
         $structure = "
             WHERE pt.tipo = '$tipo'
-            AND pt.disponibilidade = 0;
+            AND pt.disponibilidade = 0
         ";
         if($query->queryFilter($structure)){
+            $dbTotalLines =  $query->queryToCountDbDataLines($structure);
+            $totalNumPages = ceil($dbTotalLines / 10);
             $buscarAnuncios = $query->queryFilter($structure);
             $_SESSION['anuncios'] = '';
         } else {
@@ -150,8 +167,25 @@ if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) 
     }
 }
 
+echo "<br> Página atual: ".$page;
 
-
+if(isset($getsAtUrl)) {
+    if(isset($getsAtUrl[2])) {
+        $urlToPagination = $getsAtUrl[0]."&".$getsAtUrl[1]."&".$getsAtUrl[2]."&";
+    } else if(isset($getsAtUrl[1])) {
+        $urlToPagination = $getsAtUrl[0]."&".$getsAtUrl[1]."&";
+    } else if(isset($getsAtUrl[0])) {
+        $urlToPagination = $getsAtUrl[0]."&";
+    } 
+    
+    echo "<br>";
+    print_r($getsAtUrl);
+    /* echo "<br>".$getsAtUrl[1];
+    echo "<br>".$getsAtUrl[2];
+    echo "<br>".$getsAtUrl[3]; */
+} else {
+    $urlToPagination = "";
+}
 ?>
 
 <!DOCTYPE html>
@@ -218,7 +252,8 @@ if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) 
         <div class="container">
             <div class="row-left" style="display: flex; flex-direction:column">
                 <div class="filter">
-                    <form method='GET'>
+                    <form method='GET' action="index.php?p=<?php echo $page.$urlToPagination;?>">
+                        Valor
                         <input type="checkbox" class="inputs-form-filter" name="valor" value="" 
                             <?php
                                 if(!isset($_GET['valor'])) {
@@ -234,6 +269,7 @@ if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) 
                                 }
                             ?>
                         >
+                        Plataforma
                         <input type="checkbox" class="inputs-form-filter" name="plataforma" value=""
                             <?php
                                 if(!isset($_GET['plataforma'])) {
@@ -249,6 +285,7 @@ if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) 
                                 }
                             ?>
                         >
+                        Tipo
                         <input type="checkbox" class="inputs-form-filter" name="tipo" value=""
                             <?php
                                 if(!isset($_GET['tipo'])) {
@@ -530,14 +567,19 @@ if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) 
         ?>
         <div class="pagination-inputs-box">
                 <div class="pagination-inputs">
-                    <a href="<?php $pagination = $previousPage >= 0 ? "index.php?p=".$previousPage : 'index.php';echo $pagination?>" class="pagination-input-previous">
+                    <a href="<?php
+                                if($page > 0 ){
+                                    echo "index.php?".$urlToPagination."p=".$previousPage;
+                                } else {
+                                    echo "index.php";
+                                }?>" class="pagination-input-previous">
                         <button type="button" class="pagination-button pagination-button-left"> ANTERIOR </button>
                     </a>
                     <a href="<?php 
                                 if($page >= $totalNumPages - 1) {
                                     echo "index.php";
                                 } else {
-                                    echo "index.php?p=".$nextPage;
+                                    echo "index.php?".$urlToPagination."p=".$nextPage;
                                 }
                             ?>" class="pagination-input-next">
                         <button type="button" class="pagination-button pagination-button-right"> PRÓXIMA </button>

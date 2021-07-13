@@ -483,31 +483,7 @@ if($dadosUsuario->rowCount() > 0){
         </div>
     </section>
     <div class="space-150"></div>
-    <footer id="footer">
-        <div class="container">
-            <div class="row-center">
-                <h1> CONTATO </h1>
-            </div>
-            <div class="row-center">
-                <h3> contato@cezarmodz.com.br </h3>
-            </div>
-            <div class="row-center">
-                <h1> REDES SOCIAIS </h1>
-            </div>
-            <div class="row-center">
-                <a href="">
-                    <img src="assets/img/instagram.svg" alt="" >
-                </a>
-                <a href="">
-                    <img src="assets/img/youtube.svg" alt="" >
-                </a>
-            </div>
-        </div>
-        <div class="container credits">
-            <h4> Todos os direitos reservados - CezarModz </h4>
-            <h4> Desenvolvido por <a href="https://linktr.ee/adrianknapp" class='dev' target="_blank"> Adrian Knapp </a> </h4>
-        </div>
-    </footer>
+    
 
 
 <!-- Modal Segurança e Dados-->
