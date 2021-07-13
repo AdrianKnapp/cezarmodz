@@ -1,17 +1,61 @@
 <?php
+ini_set('session.cookie_samesite', 'None');
 session_start();
 require 'config.php';
 require 'classes/usuarios.class.php';
 require 'classes/index.class.php';
 
-unset($_SESSION['anuncios']);
 $query = new Query($pdo);
 
+if(isset($_GET['p'])){
+    $page = $_GET['p']; // pegar a paginação.
+    $nextPage = $page + 1;
+    $previousPage = $page - 1;
+    $linesToQuery = 8 * $page; // Buscar a partir de qual linha.
+    $dataQuery = "
+      SELECT id
+      FROM usuarios
+      LIMIT 8 OFFSET $linesToQuery;
+    ";
+  } else {
+    $page = 0;
+    $nextPage = $page + 1;
+    $previousPage = $page - 1;
+    $dataQuery = "
+        SELECT id
+        FROM usuarios
+        LIMIT 8;
+      ";
+  }
+  $dataQuery = $pdo->query($dataQuery);
+  print_r($dataQuery);
+  if($dataQuery->rowCount() > 0){
+    $totalNumPages = $dataQuery->rowCount() / 8;
+    $totalNumPages = ceil($totalNumPages);
+    
+    $numOfIds = $dataQuery->rowCount();
+    $querySucefull = '';
+  } else {
+    $withoutData = "";
+  }
 
-if(isset($_GET['valor']) && isset($_GET['plataforma']) && isset($_GET['tipo'])) {
-    $plat = addslashes($_GET['plataforma']);
-    $val = addslashes($_GET['valor']);
-    $tipo = addslashes($_GET['tipo']);
+if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) {
+
+    $plat = '';
+    $val = '';
+    $tipo = '';
+
+    if(isset($_GET['plataforma'])){
+        $plat = addslashes($_GET['plataforma']);
+    }
+    if (isset($_GET['valor'])) {
+        $val = addslashes($_GET['valor']);
+    }
+    if (isset($_GET['tipo'])) {
+        $tipo = addslashes($_GET['tipo']);
+    }
+    
+    
 
     if($plat != '' && $val != '' && $tipo != ''){
         $structure = "
@@ -96,7 +140,7 @@ if(isset($_GET['valor']) && isset($_GET['plataforma']) && isset($_GET['tipo'])) 
             $_SESSION['alertaAnuncio'] = '';
         }
     }
-    
+
 } else {
     if($query->queryDefault()){
         $buscarAnuncios = $query->queryDefault();
@@ -117,9 +161,13 @@ if(isset($_GET['valor']) && isset($_GET['plataforma']) && isset($_GET['tipo'])) 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Início - CezarModz </title>
     <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/variaveis-globais.css">
     <link rel="stylesheet" href="assets/css/styleHome.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.5.0.2.min.css">
     <!-- FONT -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <!-- ICONS -->
     <link rel="apple-touch-icon" sizes="57x57" href="assets/img/icon/apple-icon-57x57.png" type="image/x-icon" />
     <link rel="apple-touch-icon" sizes="60x60" href="assets/img/icon/apple-icon-60x60.png" type="image/x-icon" />
@@ -163,66 +211,253 @@ if(isset($_GET['valor']) && isset($_GET['plataforma']) && isset($_GET['tipo'])) 
     <!-- SEO -->
 </head>
 <body>
-    <header>
-        <?php
-            require 'menu.php';
-        ?>
-    </header>
-    <div class="space-100"></div>
+    <?php
+        require 'menu.php';
+    ?>
     <section id="store">
         <div class="container">
-        <div class="slideshow" id="slideshow">
-            <!--
-					<div class="slidebolinhas">
-						<div class="bolinha" onclick="mudarSlide(0)"> </div>
-						<div class="bolinha" onclick="mudarSlide(1)"> </div>
-                    </div>
--->
-					<div class="slarea">
-					<a href="https://www.instagram.com/cezarmodz/?hl=pt-br" target="_blank">
-						<div class="slide" style="background-image:url('assets/img/Banner.png');"> 
-						</div>
-					</a>
-					<a href="https://www.instagram.com/cezarmodz/?hl=pt-br" target="_blank">
-						<div class="slide" style="background-image:url('assets/img/Banner2.png');"> 
-						</div>
-					</a>
-					</div>
-				</div>
-            <div class="row-center title-home">
-                <div class="title-store">
-                    PRODUTOS
-                </div>
-            </div>
-            <div class="row-left">
+            <div class="row-left" style="display: flex; flex-direction:column">
                 <div class="filter">
-                    <form method="GET">
-                        <h6>FILTRO</h6>
-                        <select name="valor" class="select">
-                            <option class="option" value=""> PREÇO </option>
-                            <option class="option" value="ASC"  <?php if(isset($val)) echo ($val=="ASC")?'selected="selected"':'' ?>> Menor - Maior </option>
-                            <option class="option" value="DESC"  <?php if(isset($val)) echo ($val=="DESC")?'selected="selected"':'' ?>> Maior - Menor </option>
-                        </select>
-                        <select name="plataforma" class="select">
-                            <option class="option" value=""> PLATAFORMA </option>
-                            <option class="option" value="1" <?php if(isset($plat)) echo ($plat=="1")?'selected="selected"':'' ?>> PS4 </option>
-                            <option class="option" value="2" <?php if(isset($plat)) echo ($plat=="2")?'selected="selected"':'' ?>> XBOX </option>
-                            <option class="option" value="3" <?php if(isset($plat)) echo ($plat=="3")?'selected="selected"':'' ?>> PC </option>
-                        </select>
-                        <select name="tipo" class="select">
-                            <option class="option" value=""> TIPO </option>
-                            <option class="option" value="conta" <?php if(isset($tipo)) echo ($tipo=="conta")?'selected="selected"':'' ?>> CONTA </option>
-                            <option class="option" value="up" <?php if(isset($tipo)) echo ($tipo=="up")?'selected="selected"':'' ?>> UPGRADE </option>
-                        </select>
-                        <button type="submit" class='limparButton filtrar'> FILTRAR </button>
+                    <form method='GET'>
+                        <input type="checkbox" class="inputs-form-filter" name="valor" value="" 
+                            <?php
+                                if(!isset($_GET['valor'])) {
+                                    echo "checked";
+                                } else {
+                                    switch ($_GET['valor']) {
+                                        case "":
+                                            echo "checked";
+                                            break;
+                                        default:
+                                            echo "disabled";
+                                    }
+                                }
+                            ?>
+                        >
+                        <input type="checkbox" class="inputs-form-filter" name="plataforma" value=""
+                            <?php
+                                if(!isset($_GET['plataforma'])) {
+                                    echo "checked";
+                                } else {
+                                    switch ($_GET['plataforma']) {
+                                        case "":
+                                            echo "checked";
+                                            break;
+                                        default:
+                                            echo "disabled";
+                                    }
+                                }
+                            ?>
+                        >
+                        <input type="checkbox" class="inputs-form-filter" name="tipo" value=""
+                            <?php
+                                if(!isset($_GET['tipo'])) {
+                                    echo "checked";
+                                } else {
+                                    switch ($_GET['tipo']) {
+                                        case "":
+                                            echo "checked";
+                                            break;
+                                        default:
+                                            echo "disabled";
+                                    }
+                                }
+                            ?>
+                        >
+                        <div class="filter-buttons-group">
+                            <div class="btn-group">
+                                <button class="filter-button dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" id='filter-button'>
+                                    ORDENAR POR
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-line dropdown-item-title"> Preço </li>
+                                    <li>
+                                        <div class="dropdown-line dropdown-line-item">
+                                            <input class="form-check-input preco input-menor" type="checkbox" value="ASC" name='valor'
+                                            <?php
+                                                if(isset(($_GET['valor'])) && $_GET['valor'] == 'ASC') {
+                                                    echo 'checked';
+                                                } else {
+                                                    if(isset(($_GET['valor']))){
+                                                        switch ($_GET['valor']) {
+                                                            case "DESC":
+                                                                echo "disabled";
+                                                            break;
+                                                            default:
+                                                                
+                                                        }
+                                                    }
+                                                }
+                                            ?>>
+                                            <span> Menor </span> 
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-line dropdown-line-item">
+                                            <input class="form-check-input preco input-maior" type="checkbox" value="DESC" name='valor'
+                                            <?php
+                                                if(isset(($_GET['valor'])) && $_GET['valor'] == 'DESC') {
+                                                    echo 'checked';
+                                                } else {
+                                                    if(isset(($_GET['valor']))){
+                                                        switch ($_GET['valor']) {
+                                                            case "ASC":
+                                                                echo "disabled";
+                                                            break;
+                                                            default:
+                                                                
+                                                        }
+                                                    }
+                                                }
+                                            ?>>
+                                            <span> Maior </span> 
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li class="dropdown-line dropdown-item-title"> Plataforma </li>
+                                    <li>
+                                        <div class="dropdown-line dropdown-line-item">
+                                            <input class="form-check-input plataforma input-ps4" type="checkbox" value="1" name='plataforma'
+                                            <?php
+                                                if(isset(($_GET['plataforma'])) && $_GET['plataforma'] == '1') {
+                                                    echo 'checked';
+                                                } else {
+                                                    if(isset($_GET['plataforma'])){
+                                                        switch ($_GET['plataforma']) {
+                                                            case "2":
+                                                                echo "disabled";
+                                                            break;
+                                                            case "3":
+                                                                echo "disabled";
+                                                            break;
+                                                            default:
+                                                        }
+                                                    }
+                                                }
+                                            ?>>
+                                            <span> PS4 </span> 
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-line dropdown-line-item">
+                                            <input class="form-check-input plataforma input-xbox" type="checkbox" value="2" name='plataforma'
+                                            <?php
+                                                if(isset(($_GET['plataforma'])) && $_GET['plataforma'] == '2') {
+                                                    echo 'checked';
+                                                } else {
+                                                    if(isset(($_GET['plataforma']))){
+                                                        switch ($_GET['plataforma']) {
+                                                            case "1":
+                                                                echo "disabled";
+                                                            break;
+                                                            case "3":
+                                                                echo "disabled";
+                                                            break;
+                                                            default:
+                                                        }
+                                                    }
+                                                }
+                                            ?>>
+                                            <span> XBOX </span> 
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-line dropdown-line-item">
+                                            <input class="form-check-input plataforma input-pc" type="checkbox" value="3" name='plataforma'
+                                            <?php
+                                                if(isset(($_GET['plataforma'])) && $_GET['plataforma'] == '3') {
+                                                    echo 'checked';
+                                                } else {
+                                                    if(isset(($_GET['plataforma']))){
+                                                        switch ($_GET['plataforma']) {
+                                                            case "2":
+                                                                echo "disabled";
+                                                            break;
+                                                            case "1":
+                                                                echo "disabled";
+                                                            break;
+                                                            default:
+                                                        }
+                                                    }
+                                                }
+                                            ?>>
+                                            <span> PC </span> 
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li class="dropdown-line dropdown-item-title"> Tipo </li>
+                                    <li>
+                                        <div class="dropdown-line dropdown-line-item">
+                                            <input class="form-check-input tipo input-conta" type="checkbox" value="conta" name='tipo'
+                                            <?php
+                                                if(isset(($_GET['tipo'])) && $_GET['tipo'] == 'conta') {
+                                                    echo 'checked';
+                                                } else {
+                                                    if(isset($_GET['tipo'])){
+                                                        switch ($_GET['tipo']) {
+                                                            case "up":
+                                                                echo "disabled";
+                                                            break;
+                                                            default:
+                                                        }
+                                                    }
+                                                }
+                                            ?>>
+                                            <span> Conta </span> 
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-line dropdown-line-item">
+                                            <input class="form-check-input tipo input-upgrade" type="checkbox" value="up" name='tipo'
+                                            <?php
+                                                if(isset(($_GET['tipo'])) && $_GET['tipo'] == 'up') {
+                                                    echo 'checked';
+                                                } else {
+                                                    if(isset($_GET['tipo'])){
+                                                        switch ($_GET['tipo']) {
+                                                            case "up":
+                                                                echo "disabled";
+                                                            break;
+                                                            default:
+                                                        }
+                                                    }
+                                                }
+                                            ?>>
+                                            <span> Upgrade </span> 
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-line dropdown-line-item">
+                                            <input class="submit-button-filter"  type="submit" value="Submit">
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <button type="button" class='filter-button filtrar-button'> FILTRAR </button>
+                            <?php
+                            if(isset($_GET['valor'])) {
+                                echo "
+                                    <a href='index.php'>
+                                        <button type='button' class='filter-button'> LIMPAR FILTROS </button>
+                                    </a>
+                                ";
+                            }
+                            ?>
+                        </div>
                     </form>
-                    <button class='limparButton' onclick='location.href="index.php"'> LIMPAR </button>
-                    
+                <div class="form-check form-switch">
+                    <label class="custom-control-label" for="darkSwitch">DARK MODE</label>
+                    <input type="checkbox" class="form-check-input" id="darkSwitch" >
                 </div>
-                <button class='abrirFiltros'> FILTROS </button>
             </div>
-            
-            <div class="products-box">
+                <button class='abrirFiltros'> FILTROS </button>
+        </div>
+        <div class="products-box">
             <?php
                 if(isset($_SESSION['anuncios'])){
                     foreach($buscarAnuncios->fetchAll() as $anuncios):
@@ -250,57 +485,70 @@ if(isset($_GET['valor']) && isset($_GET['plataforma']) && isset($_GET['tipo'])) 
                             <div class='row-center'>
                                 <h1> $anuncioTipo $anuncioNome </h1>
                             </div>
-                            <h4> $anuncioDesconto R$ </h4>
+                            <h4 id='anuncioDesconto'>R$ $anuncioDesconto</h4>
                             <div class='row-center'>
-                                <h2> $anuncioValor R$</h2>
+                                <h2>R$ $anuncioValor</h2>
                             </div>
                             <div class='row-center'>
-                                <a href='product.php?id=$anuncioId'>
-                                    <input type='submit' class='see-more' value='VER MAIS'>
+                                <a href='product.php?id=$anuncioId' target='blank_'>
+                                    <div class='see-more'>
+                                        VER MAIS
+                                    </div>
                                 </a>
                             </div>
-                            <div class='row-right'>
-                                <h3>$anuncioPlat</h3>
+                            <div class='row-right anuncio-plataforma'>
+                                $anuncioPlat
                             </div>
                         </div>";
                     endforeach;
-                } /* else {
-                    echo "NÃO HÁ ANUNCIOS";
-                } */
-                if(isset($_SESSION['alertaAnuncio'])){
-                    echo "
-                        <div class='row-center'>
-                            <h2 class='alertaAnuncio'> Não há anúncios. </h2>
-                        </div>
-                    ";
-                } unset($_SESSION['alertaAnuncio']);
-                ?>
+                }  
+            ?>
         </div>
+        <?php
+            if(!isset($_SESSION['anuncios'])){
+                echo "
+                <div class='without-anuncios'>
+                    Não há anúncios.
+                </div>
+                <div class='space-100'></div>
+                ";
+            }  unset($_SESSION['anuncios']);
+        ?>
+        <div class="pagination-inputs-box">
+                <div class="pagination-inputs">
+                    <a href="<?php $pagination = $previousPage >= 0 ? "index.php?p=".$previousPage : 'index.php';echo $pagination?>" class="pagination-input-previous">
+                        <button type="button" class="pagination-button pagination-button-left"> ANTERIOR </button>
+                    </a>
+                    <a href="<?php 
+                                if($page >= $totalNumPages - 1) {
+                                    echo "index.php";
+                                } else {
+                                    echo "index.php?p=".$nextPage;
+                                }
+                            ?>" class="pagination-input-next">
+                        <button type="button" class="pagination-button pagination-button-right"> PRÓXIMA </button>
+                    </a>
+                </div>
+        </div>
+        <footer id="footer">
+            <div class="container">
+                <div class="footer-left footer-box">
+                    <h3> Contato via E-mail </h3>
+                    <h5><a href="mailto:contato@cezarmodz.com" target="blank_"> Contato comercial </a></h5>
+                    <h5><a href="mailto:suporte@cezarmodz.com" target="blank_"> Suporte ao cliente </a></h5>
+                </div>
+                <div class="footer-right footer-box">
+                    <h3> Redes sociais </h3>
+                    <h5><a href="https://www.instagram.com/cezarmodz/?hl=pt-br" target="blank_"> Instagram </a></h5>
+                    <h5><a href="https://www.facebook.com/CezarMods" target="blank_"> Facebook </a></h5>
+                </div>
+                <div class="footer-bottom  footer-box">
+                    <h6> Todos direitos reservados </h6>
+                    <h6> Desenvolvido por <a href="https://flow.page/adrianknapp" target="blank_">Adrian Knapp</a>  </h6>
+                </div>
+            </div>
+        </footer>
     </section>
-    <div class="space-100"></div>
-
-    <footer id="footer">
-        <div class="container">
-            <div class="row-center">
-                <h1> CONTATO </h1>
-            </div>
-            <div class="row-center">
-                <h3> contato@cezarmodz.com.br </h3>
-            </div>
-            <div class="row-center">
-                <h1> REDES SOCIAIS </h1>
-            </div>
-            <div class="row-center">
-                <a href="">
-                    <img src="assets/img/instagram.svg" alt="" >
-                </a>
-            </div>
-        </div>
-        <div class="container credits">
-            <h4> Todos os direitos reservados - CezarModz </h4>
-            <h4> Desenvolvido por <a href="https://linktr.ee/adrianknapp" class='dev' target="_blank"> Adrian Knapp </a> </h4>
-        </div>
-    </footer>
 
     <!-- MODAL FILTRO RESPONSIVO -->
     <div class="filtroPopUp">
@@ -326,8 +574,11 @@ if(isset($_GET['valor']) && isset($_GET['plataforma']) && isset($_GET['tipo'])) 
     <button class='limparButton' onclick='location.href="index.php"'> LIMPAR </button>
     <button class='cancelModal'> CANCELAR </button>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <script type="text/javascript" src="assets/js/jquery.js"></script>
     <script type="text/javascript" src="assets/js/scriptMenu.js"></script>
     <script type="text/javascript" src="assets/js/home.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.5.0.2.bundle.min.js"></script>
 </body>
 </html>

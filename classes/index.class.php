@@ -27,7 +27,7 @@ class Query {
             WHERE pt.disponibilidade = 0
         ";
         $buscarAnuncios = $this->pdo->query($buscarAnuncios);
-        if($buscarAnuncios->rowCount() >0){
+        if($buscarAnuncios->rowCount() > 0){
             $this->buscarAnuncios = $buscarAnuncios;
             return $this->buscarAnuncios;
             return true;

@@ -1,0 +1,11 @@
+:root {
+    --color-texts: #525252;
+    --color-texts-on-hover: white;
+    --orange-color: #ff7c1f;
+    --price-color: #ff7c1f;
+    --font-family: 'Poppins', sans-serif !important;
+    --background-color: #ebebeb;
+    --white-background-color: white;
+    --offer-color: #ff481f;
+    --anuncio-background-color: white;
+}
