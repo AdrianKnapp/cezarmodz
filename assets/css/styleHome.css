@@ -124,6 +124,15 @@ p {
     color: var(--color-texts);
     background-color: var(--anuncio-background-color);
 }
+.button-dropdown {
+    color: var(--orange-color);
+    border: 1px solid var(--orange-color);
+}
+.button-dropdown:hover {
+    border: 1px solid var(--orange-color) !important;
+    background-color: var(--filtrar-button-on-hover) !important;
+}
+
 .filter-button:hover {
     background-color: var(--color-texts);
     color: var(--color-texts-on-hover);
@@ -135,7 +144,7 @@ p {
     display: none;
 }
 .inputs-form-filter{
-    display: block;
+    display: none;
 }
 .dropdown-item-title{
     font-weight: 500 !important;
@@ -147,7 +156,16 @@ p {
 .dropdown-line-item{
     display: flex;
 }
+.dropdown-menu label {
+    cursor: pointer;
+    user-select: none;
+    transition: .2s;
+}
+.dropdown-menu label:hover {
+    background-color: var(--label-filter-bgcolor);
+}
 .dropdown-line-item span{
+    transition: .2s;
     margin-left: 10px;
     color: var(--color-texts);
 }

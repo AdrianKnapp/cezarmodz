@@ -35,6 +35,7 @@ function changeStyleToDark() {
 	$(":root").get(0).style.setProperty("--background-color", "#1c1c1c");
 	$(":root").get(0).style.setProperty("--offer-color", "white");
 	$(":root").get(0).style.setProperty("--color-texts-on-hover", "#171717");
+	$(":root").get(0).style.setProperty("--label-filter-bgcolor", "#545454");
 	$(":root").get(0).style.setProperty("--white-background-color", "#1c1c1c");
 	$(":root").get(0).style.setProperty("--anuncio-background-color", "#272727");
 	$("header").css({
@@ -51,6 +52,7 @@ function changeStyleToLight() {
 	$(":root").get(0).style.setProperty("--background-color", "#ebebeb");
 	$(":root").get(0).style.setProperty("--offer-color", "#ff481f");
 	$(":root").get(0).style.setProperty("--color-texts-on-hover", "white");
+	$(":root").get(0).style.setProperty("--label-filter-bgcolor", "#dbdbdb");
 	$(":root").get(0).style.setProperty("--white-background-color", "white");
 	$(":root").get(0).style.setProperty("--anuncio-background-color", "white");
 	$("header").css({
@@ -62,41 +64,71 @@ function changeStyleToLight() {
 }
 
 $(".input-menor").change(function () {
-	bloquearOutrosInputs(this, ".input-maior");
+	bloquearOutrosInputs(this, ".input-maior", "#span-for-input-maior");
+	bloquearInputsPadroes("#inputs-form-filter-valor");
 });
 $(".input-maior").change(function () {
-	bloquearOutrosInputs(this, ".input-menor");
+	bloquearOutrosInputs(this, ".input-menor", "#span-for-input-menor");
+	bloquearInputsPadroes("#inputs-form-filter-valor");
 });
 $(".input-ps4").change(function () {
-	bloquearOutrosInputs(this, ".input-xbox");
-	bloquearOutrosInputs(this, ".input-pc");
+	bloquearOutrosInputs(this, ".input-xbox", "#span-for-input-xbox");
+	bloquearOutrosInputs(this, ".input-pc", "#span-for-input-pc");
+	bloquearInputsPadroes("#inputs-form-filter-plataforma");
 });
 $(".input-xbox").change(function () {
-	bloquearOutrosInputs(this, ".input-ps4");
-	bloquearOutrosInputs(this, ".input-pc");
+	bloquearOutrosInputs(this, ".input-ps4", "#span-for-input-ps4");
+	bloquearOutrosInputs(this, ".input-pc", "#span-for-input-pc");
+	bloquearInputsPadroes("#inputs-form-filter-plataforma");
 });
 $(".input-pc").change(function () {
-	bloquearOutrosInputs(this, ".input-ps4");
-	bloquearOutrosInputs(this, ".input-xbox");
+	bloquearOutrosInputs(this, ".input-ps4", "#span-for-input-ps4");
+	bloquearOutrosInputs(this, ".input-xbox", "#span-for-input-xbox");
+	bloquearInputsPadroes("#inputs-form-filter-plataforma");
 });
 $(".input-conta").change(function () {
-	bloquearOutrosInputs(this, ".input-upgrade");;
+	bloquearOutrosInputs(this, ".input-upgrade", "#span-for-input-upgrade");;
+	bloquearInputsPadroes("#inputs-form-filter-tipo");
 });
 $(".input-upgrade").change(function () {
-	bloquearOutrosInputs(this, ".input-conta");
+	bloquearOutrosInputs(this, ".input-conta", "#span-for-input-conta");
+	bloquearInputsPadroes("#inputs-form-filter-tipo");
 });
 
-function bloquearOutrosInputs(elemento, elementoParaBloquear) {
+function bloquearOutrosInputs(elemento, elementoParaBloquear, elementToChangeColor) {
 	if (elemento.checked) {
 		$(elementoParaBloquear).prop("disabled", true);
+		$(elementToChangeColor).get(0).style.setProperty("color", "#969696");
 	} else {
 		$(elementoParaBloquear).prop("disabled", false);
+		$(elementToChangeColor).get(0).style.setProperty("color", "var(--color-texts)");
+	}
+}
+function bloquearInputsPadroes(tipoDoInput) {
+	const input = $(tipoDoInput).get(0);
+	if (input.checked) {
+		console.log('Input checado');
+		$(tipoDoInput).prop("disabled", true);
+		$(tipoDoInput).prop("checked", false);
+	} else {
+		console.log('Input NÃO checado');
+		$(tipoDoInput).prop("disabled", false);
+		$(tipoDoInput).prop("checked", true);
 	}
 }
 
 $(".filtrar-button").click(function () {
-	$(".submit-button-filter").trigger('click');
+	checkEmptyCheckbox();
 });
+
+function checkEmptyCheckbox() {
+	if($(".input-menor").get(0).checked || $(".input-maior").get(0).checked || $(".input-ps4").get(0).checked || $(".input-xbox").get(0).checked || $(".input-pc").get(0).checked || $(".input-conta").get(0).checked || $(".input-upgrade").get(0).checked) {
+		$(".submit-button-filter").trigger('click');
+		return true;
+	} else {
+		return false;
+	}
+}
 
 
 

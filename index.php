@@ -12,11 +12,9 @@ $nextPage = $page + 1;
 switch ($page) {
     case 0:
         $previousPage = 0;
-        echo "Página anterior: ".$previousPage."<br>";
         break;
     case 1:
         $previousPage = $page - 1;
-        echo "Página anterior: ".$previousPage."<br>";
         break;
 }
 
@@ -29,21 +27,16 @@ if($page == 0) {
     $linesToQuery = 10 * 0;
 } else {
     $linesToQuery = 10 * $page;
-    echo "Buscar a partir da linha: ".$linesToQuery;
 }
 
 $query = new Query($pdo, $linesToQuery);
 $structure = '';
 $dbTotalLines =  $query->queryToCountDbDataLines($structure);
 $totalNumPages = ceil($dbTotalLines / 10);
-print_r("Número total de paginas: ".$totalNumPages);
 
 if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) {
     $getsAtUrl = explode("?", $presentUrl);
     $getsAtUrl = explode("&", $getsAtUrl[1]);
-    echo "<br>";
-    print_r($getsAtUrl);
-    echo "<br>";
     $plat = '';
     $val = '';
     $tipo = '';
@@ -167,8 +160,6 @@ if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) 
     }
 }
 
-echo "<br> Página atual: ".$page;
-
 if(isset($getsAtUrl)) {
     if(isset($getsAtUrl[2])) {
         $urlToPagination = $getsAtUrl[0]."&".$getsAtUrl[1]."&".$getsAtUrl[2]."&";
@@ -177,12 +168,7 @@ if(isset($getsAtUrl)) {
     } else if(isset($getsAtUrl[0])) {
         $urlToPagination = $getsAtUrl[0]."&";
     } 
-    
-    echo "<br>";
-    print_r($getsAtUrl);
-    /* echo "<br>".$getsAtUrl[1];
-    echo "<br>".$getsAtUrl[2];
-    echo "<br>".$getsAtUrl[3]; */
+
 } else {
     $urlToPagination = "";
 }
@@ -254,8 +240,7 @@ if(isset($getsAtUrl)) {
             <div class="row-left" style="display: flex; flex-direction:column">
                 <div class="filter">
                     <form method='GET' action="index.php?p=<?php echo $page.$urlToPagination;?>">
-                        Valor
-                        <input type="checkbox" class="inputs-form-filter" name="valor" value="" 
+                        <input type="checkbox" class="inputs-form-filter" name="valor"  value="" id="inputs-form-filter-valor"
                             <?php
                                 if(!isset($_GET['valor'])) {
                                     echo "checked";
@@ -268,10 +253,8 @@ if(isset($getsAtUrl)) {
                                             echo "disabled";
                                     }
                                 }
-                            ?>
-                        >
-                        Plataforma
-                        <input type="checkbox" class="inputs-form-filter" name="plataforma" value=""
+                            ?>>
+                        <input type="checkbox" class="inputs-form-filter" name="plataforma" value="" id="inputs-form-filter-plataforma"
                             <?php
                                 if(!isset($_GET['plataforma'])) {
                                     echo "checked";
@@ -284,10 +267,9 @@ if(isset($getsAtUrl)) {
                                             echo "disabled";
                                     }
                                 }
-                            ?>
-                        >
-                        Tipo
-                        <input type="checkbox" class="inputs-form-filter" name="tipo" value=""
+                            ?>>
+                        
+                        <input type="checkbox" class="inputs-form-filter" name="tipo" value="" id="inputs-form-filter-tipo"
                             <?php
                                 if(!isset($_GET['tipo'])) {
                                     echo "checked";
@@ -304,15 +286,15 @@ if(isset($getsAtUrl)) {
                         >
                         <div class="filter-buttons-group">
                             <div class="btn-group">
-                                <button class="filter-button dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" id='filter-button'>
+                                <button class="filter-button dropdown-toggle button-dropdown"
+                                    data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                                     ORDENAR POR
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li class="dropdown-line dropdown-item-title"> Preço </li>
                                     <li>
-                                        <div class="dropdown-line dropdown-line-item">
-                                            <input class="form-check-input preco input-menor" type="checkbox" value="ASC" name='valor'
+                                        <label class="dropdown-line dropdown-line-item">
+                                            <input class="form-check-input preco input-menor" type="checkbox" value="ASC" name='valor' id='input-menor'
                                             <?php
                                                 if(isset(($_GET['valor'])) && $_GET['valor'] == 'ASC') {
                                                     echo 'checked';
@@ -322,17 +304,28 @@ if(isset($getsAtUrl)) {
                                                             case "DESC":
                                                                 echo "disabled";
                                                             break;
-                                                            default:
-                                                                
                                                         }
                                                     }
                                                 }
                                             ?>>
-                                            <span> Menor </span> 
-                                        </div>
+                                            <span id='span-for-input-menor'
+                                            <?php
+                                                if(isset(($_GET['valor'])) && $_GET['valor'] == 'ASC') {
+                                                    
+                                                } else {
+                                                    if(isset(($_GET['valor']))){
+                                                        switch ($_GET['valor']) {
+                                                            case "DESC":
+                                                                echo "style='color: #969696'";
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            ?>> Menor </span> 
+                                        </label>
                                     </li>
                                     <li>
-                                        <div class="dropdown-line dropdown-line-item">
+                                        <label class="dropdown-line dropdown-line-item">
                                             <input class="form-check-input preco input-maior" type="checkbox" value="DESC" name='valor'
                                             <?php
                                                 if(isset(($_GET['valor'])) && $_GET['valor'] == 'DESC') {
@@ -349,15 +342,28 @@ if(isset($getsAtUrl)) {
                                                     }
                                                 }
                                             ?>>
-                                            <span> Maior </span> 
-                                        </div>
+                                            <span id='span-for-input-maior'
+                                            <?php
+                                                if(isset(($_GET['valor'])) && $_GET['valor'] == 'DESC') {
+                                                    
+                                                } else {
+                                                    if(isset(($_GET['valor']))){
+                                                        switch ($_GET['valor']) {
+                                                            case "ASC":
+                                                                echo "style='color: #969696'";
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            ?>> Maior </span> 
+                                        </label>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li class="dropdown-line dropdown-item-title"> Plataforma </li>
                                     <li>
-                                        <div class="dropdown-line dropdown-line-item">
+                                        <label class="dropdown-line dropdown-line-item">
                                             <input class="form-check-input plataforma input-ps4" type="checkbox" value="1" name='plataforma'
                                             <?php
                                                 if(isset(($_GET['plataforma'])) && $_GET['plataforma'] == '1') {
@@ -371,16 +377,31 @@ if(isset($getsAtUrl)) {
                                                             case "3":
                                                                 echo "disabled";
                                                             break;
-                                                            default:
                                                         }
                                                     }
                                                 }
                                             ?>>
-                                            <span> PS4 </span> 
-                                        </div>
+                                            <span id='span-for-input-ps4'
+                                            <?php
+                                                if(isset(($_GET['plataforma'])) && $_GET['plataforma'] == '1') {
+                                                    
+                                                } else {
+                                                    if(isset(($_GET['plataforma']))){
+                                                        switch ($_GET['plataforma']) {
+                                                            case "2":
+                                                                echo "style='color: #969696'";
+                                                            break;
+                                                            case "3":
+                                                                echo "style='color: #969696'";
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            ?>> PS4 </span> 
+                                        </label>
                                     </li>
                                     <li>
-                                        <div class="dropdown-line dropdown-line-item">
+                                        <label class="dropdown-line dropdown-line-item">
                                             <input class="form-check-input plataforma input-xbox" type="checkbox" value="2" name='plataforma'
                                             <?php
                                                 if(isset(($_GET['plataforma'])) && $_GET['plataforma'] == '2') {
@@ -399,11 +420,27 @@ if(isset($getsAtUrl)) {
                                                     }
                                                 }
                                             ?>>
-                                            <span> XBOX </span> 
-                                        </div>
+                                            <span id='span-for-input-xbox'
+                                            <?php
+                                                if(isset(($_GET['plataforma'])) && $_GET['plataforma'] == '2') {
+                                                    
+                                                } else {
+                                                    if(isset(($_GET['plataforma']))){
+                                                        switch ($_GET['plataforma']) {
+                                                            case "1":
+                                                                echo "style='color: #969696'";
+                                                            break;
+                                                            case "3":
+                                                                echo "style='color: #969696'";
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            ?>> XBOX </span> 
+                                        </label>
                                     </li>
                                     <li>
-                                        <div class="dropdown-line dropdown-line-item">
+                                        <label class="dropdown-line dropdown-line-item">
                                             <input class="form-check-input plataforma input-pc" type="checkbox" value="3" name='plataforma'
                                             <?php
                                                 if(isset(($_GET['plataforma'])) && $_GET['plataforma'] == '3') {
@@ -422,15 +459,31 @@ if(isset($getsAtUrl)) {
                                                     }
                                                 }
                                             ?>>
-                                            <span> PC </span> 
-                                        </div>
+                                            <span id='span-for-input-pc'
+                                            <?php
+                                                if(isset(($_GET['plataforma'])) && $_GET['plataforma'] == '3') {
+                                                    
+                                                } else {
+                                                    if(isset(($_GET['plataforma']))){
+                                                        switch ($_GET['plataforma']) {
+                                                            case "2":
+                                                                echo "style='color: #969696'";
+                                                            break;
+                                                            case "1":
+                                                                echo "style='color: #969696'";
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            ?>> PC </span> 
+                                        </label>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li class="dropdown-line dropdown-item-title"> Tipo </li>
                                     <li>
-                                        <div class="dropdown-line dropdown-line-item">
+                                        <label class="dropdown-line dropdown-line-item">
                                             <input class="form-check-input tipo input-conta" type="checkbox" value="conta" name='tipo'
                                             <?php
                                                 if(isset(($_GET['tipo'])) && $_GET['tipo'] == 'conta') {
@@ -446,11 +499,24 @@ if(isset($getsAtUrl)) {
                                                     }
                                                 }
                                             ?>>
-                                            <span> Conta </span> 
-                                        </div>
+                                            <span id='span-for-input-conta'
+                                            <?php
+                                                if(isset(($_GET['tipo'])) && $_GET['tipo'] == 'conta') {
+                                                    
+                                                } else {
+                                                    if(isset(($_GET['tipo']))){
+                                                        switch ($_GET['tipo']) {
+                                                            case "up":
+                                                                echo "style='color: #969696'";
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            ?>> Conta </span> 
+                                        </label>
                                     </li>
                                     <li>
-                                        <div class="dropdown-line dropdown-line-item">
+                                        <label class="dropdown-line dropdown-line-item">
                                             <input class="form-check-input tipo input-upgrade" type="checkbox" value="up" name='tipo'
                                             <?php
                                                 if(isset(($_GET['tipo'])) && $_GET['tipo'] == 'up') {
@@ -466,12 +532,25 @@ if(isset($getsAtUrl)) {
                                                     }
                                                 }
                                             ?>>
-                                            <span> Upgrade </span> 
-                                        </div>
+                                            <span id='span-for-input-upgrade'
+                                            <?php
+                                                if(isset(($_GET['tipo'])) && $_GET['tipo'] == 'up') {
+                                                    
+                                                } else {
+                                                    if(isset(($_GET['tipo']))){
+                                                        switch ($_GET['tipo']) {
+                                                            case "conta":
+                                                                echo "style='color: #969696'";
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            ?>> Upgrade </span> 
+                                        </label>
                                     </li>
                                     <li>
                                         <div class="dropdown-line dropdown-line-item">
-                                            <input class="submit-button-filter"  type="submit" value="Submit">
+                                            <input class="submit-button-filter" onsubmit="return checkEmptyCheckbox()" type="submit" value="Submit">
                                         </div>
                                     </li>
                                 </ul>

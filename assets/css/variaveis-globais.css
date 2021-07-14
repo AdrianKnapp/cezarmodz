@@ -6,6 +6,8 @@
     --font-family: 'Poppins', sans-serif !important;
     --background-color: #ebebeb;
     --white-background-color: white;
-    --offer-color: #ff481f;
+    --offer-color: #f5260f;
     --anuncio-background-color: white;
+    --label-filter-bgcolor: #dbdbdb;
+    --filtrar-button-on-hover: #ff7c1f;
 }

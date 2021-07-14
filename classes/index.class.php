@@ -29,7 +29,6 @@ class Query {
         $buscarAnuncios = $this->pdo->query($buscarAnuncios);
         if($buscarAnuncios->rowCount() > 0){
             $numTotalLinhas = $buscarAnuncios->rowCount();
-            echo "<br >CLASSE - Número total de linhas: ".$numTotalLinhas."<br>";   
             return $numTotalLinhas;
         } else {
             return false;
@@ -51,6 +50,7 @@ class Query {
             INNER JOIN plataformas AS pf
             ON pt.plataforma = pf.id_plataforma
             WHERE pt.disponibilidade = 0
+            ORDER BY  pt.valor ASC
             LIMIT 10 OFFSET $this->linesToQuery;
         ";
         $buscarAnuncios = $this->pdo->query($buscarAnuncios);
@@ -81,7 +81,6 @@ class Query {
             $structure
             LIMIT 10 OFFSET $this->linesToQuery;
         ";
-        /* print_r($buscarAnuncios); */
         $buscarAnuncios = $this->pdo->query($buscarAnuncios);
         if($buscarAnuncios->rowCount() > 0){
             $this->buscarAnuncios = $buscarAnuncios;
