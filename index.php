@@ -198,6 +198,7 @@ if(isset($getsAtUrl)) {
     <link rel="stylesheet" href="assets/css/variaveis-globais.css">
     <link rel="stylesheet" href="assets/css/styleHome.css">
     <link rel="stylesheet" href="assets/css/bootstrap.5.0.2.min.css">
+    <link rel="stylesheet" href="assets/css/menu.css">
     <!-- FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -487,10 +488,6 @@ if(isset($getsAtUrl)) {
                             ?>
                         </div>
                     </form>
-                <div class="form-check form-switch">
-                    <label class="custom-control-label" for="darkSwitch">DARK MODE</label>
-                    <input type="checkbox" class="form-check-input" id="darkSwitch" >
-                </div>
             </div>
                 <button class='abrirFiltros'> FILTROS </button>
         </div>

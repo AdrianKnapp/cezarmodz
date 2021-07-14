@@ -1,6 +1,15 @@
 $(document).ready(function () {
 	const pageStyle = localStorage.getItem('pageStyle');
+	const presentUrl = window.location.href;
+	const urlWithoutGetParameters = presentUrl.split('?')[0];
 
+	if (urlWithoutGetParameters === 'http://localhost/CezarModz/index.php') {
+		console.log(urlWithoutGetParameters);
+		$("#inicio-item-menu").addClass("item-menu-actived");
+		$("#inicio-bar-menu").addClass("item-bar-actived");
+	} else {
+		
+	}
 	switch (pageStyle) {
 		case 'light':
 			changeStyleToLight();

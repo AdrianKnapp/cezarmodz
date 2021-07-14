@@ -17,16 +17,55 @@ header {
   background-color: var(--white-background-color);
 }
 header .container {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  grid-template-rows: 100%;
+  grid-template-areas: "logo menu darkmode";
+}
+header .logo {
+  grid-column: 1/2;
+  grid-area: logo;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 .menu {
   font-family: var(--font-family);
   height: 100%;
+  grid-column: 2/3;
+  grid-area: menu;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 nav {
   height: 100%;
+}
+.form-check {
+  display: flex !important;
+  padding: 0 !important;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  background-color: rgb(red, green, blue, 0);
+  font-family: var(--font-family) !important;
+  margin: 0 !important;
+  grid-column: 3/4;
+  grid-area: darkmode;
+}
+.form-check input {
+  width: 40px !important;
+  height: 20px !important;
+  margin: 0 !important;
+  cursor: pointer;
+  user-select: none;
+}
+.form-check label {
+  font-size: 18px;
+  margin-right: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
 }
 .logo a{
   font-size: 25px;
@@ -87,7 +126,15 @@ nav {
 .menu a:hover li{
   color: var(--orange-color);
 }
-
+.item-menu-actived{
+  color: var(--orange-color) !important;
+}
+.item-bar-actived{
+  transform: translateX(0);
+  z-index: 20;
+  opacity: 1;
+  background: var(--orange-color);
+}
 .modalMenu {
   top: 0;
   left: 0;
