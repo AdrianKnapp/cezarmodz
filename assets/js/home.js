@@ -1,7 +1,7 @@
 $(document).ready(function () {
-	const myCookie = Cookies.get("pageStyle");
+	const pageStyle = localStorage.getItem('pageStyle');
 
-	switch (myCookie) {
+	switch (pageStyle) {
 		case 'light':
 			changeStyleToLight();
 			break;
@@ -33,7 +33,7 @@ function changeStyleToDark() {
 	});
 	$("#filter-button").removeClass("btn-outline-dark").addClass("btn-outline-light");
 	$(".dropdown-menu").addClass("dropdown-menu-dark");
-	Cookies.set("pageStyle", "dark");
+	localStorage.setItem('pageStyle','dark');
 }
 
 function changeStyleToLight() {
@@ -49,7 +49,7 @@ function changeStyleToLight() {
 	});
 	$("#filter-button").removeClass("btn-outline-light").addClass("btn-outline-dark");
 	$(".dropdown-menu").removeClass("dropdown-menu-dark");
-	Cookies.set("pageStyle", "light");
+	localStorage.setItem('pageStyle','light');
 }
 
 $(".input-menor").change(function () {

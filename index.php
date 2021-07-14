@@ -631,7 +631,6 @@ if(isset($getsAtUrl)) {
     <button class='cancelModal'> CANCELAR </button>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <script type="text/javascript" src="assets/js/jquery.js"></script>
     <script type="text/javascript" src="assets/js/scriptMenu.js"></script>
     <script type="text/javascript" src="assets/js/home.js"></script>
