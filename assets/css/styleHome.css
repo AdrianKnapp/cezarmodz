@@ -184,7 +184,7 @@ p {
     user-select: none;
     transition: .2s;
 }
-.label-with-hover-function:hover {
+.dropdown-menu label:hover {
     background-color: var(--label-filter-bgcolor);
 }
 .dropdown-line-item span{
@@ -306,17 +306,9 @@ p {
     font-weight: 600;
     color: var(--color-texts);
 }
-/* .highlight-conta {
-    color: #36c0c9;
-} 
-.highlight-upgrade {
-    color: var(--orange-color);
-} */
 .see-more {
     font-family: var(--font-family);
     color: var(--color-texts);
-    margin-top: 10px;
-    margin-bottom: 15px;
     font-weight: 500;
     font-size: 1em;
     outline: 0;
@@ -325,6 +317,10 @@ p {
     padding: 5px 30px;
     transition-duration: 0.2s;
     cursor: pointer;
+}
+.see-more-link {
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 .see-more:hover {
     background: var(--color-texts);
@@ -487,6 +483,21 @@ footer a:hover{
     font-size: 0.9em;
     font-weight: 300;
     margin: 0;
+}
+body::-webkit-scrollbar {
+    width: 10px;
+    
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--softdark-background-color);
+    border-left: 1px solid var(--color-texts) !important;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--color-texts);    /* color of the scroll thumb */
+    border-radius: 0;       /* roundness of the scroll thumb */
+    border: 0;  /* creates padding around scroll thumb */
 }
 @media(max-width: 667px) and (min-width:435px) {
     .limparButton{

@@ -6,7 +6,6 @@ require 'classes/usuarios.class.php';
 require 'classes/index.class.php';
 
 $presentUrl =  $_SERVER["REQUEST_URI"];
-
 $page = 0;
 $nextPage = $page + 1;
 switch ($page) {
@@ -186,6 +185,8 @@ if(isset($getsAtUrl)) {
     <link rel="stylesheet" href="assets/css/styleHome.css">
     <link rel="stylesheet" href="assets/css/bootstrap.5.0.2.min.css">
     <link rel="stylesheet" href="assets/css/menu.css">
+    <!-- JQUERY -->
+    <script type="text/javascript" src="assets/js/jquery.js"></script>
     <!-- FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -310,26 +311,13 @@ if(isset($getsAtUrl)) {
                                                     if(isset(($_GET['valor']))){
                                                         switch ($_GET['valor']) {
                                                             case "DESC":
-                                                                echo "disabled";
+                                                                /* echo "disabled"; */
                                                             break;
                                                         }
                                                     }
                                                 }
                                             ?>>
-                                            <span id='span-for-input-menor'
-                                            <?php
-                                                if(isset(($_GET['valor'])) && $_GET['valor'] == 'ASC') {
-                                                    
-                                                } else {
-                                                    if(isset(($_GET['valor']))){
-                                                        switch ($_GET['valor']) {
-                                                            case "DESC":
-                                                                echo "style='color: #969696'";
-                                                            break;
-                                                        }
-                                                    }
-                                                }
-                                            ?>> Menor </span> 
+                                            <span id='span-for-input-menor'> Menor </span> 
                                         </label>
                                     </li>
                                     <li>
@@ -342,7 +330,7 @@ if(isset($getsAtUrl)) {
                                                     if(isset(($_GET['valor']))){
                                                         switch ($_GET['valor']) {
                                                             case "ASC":
-                                                                echo "disabled";
+                                                                /* echo "disabled"; */;
                                                             break;
                                                             default:
                                                                 
@@ -350,20 +338,7 @@ if(isset($getsAtUrl)) {
                                                     }
                                                 }
                                             ?>>
-                                            <span id='span-for-input-maior'
-                                            <?php
-                                                if(isset(($_GET['valor'])) && $_GET['valor'] == 'DESC') {
-                                                    
-                                                } else {
-                                                    if(isset(($_GET['valor']))){
-                                                        switch ($_GET['valor']) {
-                                                            case "ASC":
-                                                                echo "style='color: #969696'";
-                                                            break;
-                                                        }
-                                                    }
-                                                }
-                                            ?>> Maior </span> 
+                                            <span id='span-for-input-maior'> Maior </span> 
                                         </label>
                                     </li>
                                     <li>
@@ -380,32 +355,16 @@ if(isset($getsAtUrl)) {
                                                     if(isset($_GET['plataforma'])){
                                                         switch ($_GET['plataforma']) {
                                                             case "2":
-                                                                echo "disabled";
+                                                                /* echo "disabled"; */;
                                                             break;
                                                             case "3":
-                                                                echo "disabled";
+                                                                /* echo "disabled"; */;
                                                             break;
                                                         }
                                                     }
                                                 }
                                             ?>>
-                                            <span id='span-for-input-ps4'
-                                            <?php
-                                                if(isset(($_GET['plataforma'])) && $_GET['plataforma'] == '1') {
-                                                    
-                                                } else {
-                                                    if(isset(($_GET['plataforma']))){
-                                                        switch ($_GET['plataforma']) {
-                                                            case "2":
-                                                                echo "style='color: #969696'";
-                                                            break;
-                                                            case "3":
-                                                                echo "style='color: #969696'";
-                                                            break;
-                                                        }
-                                                    }
-                                                }
-                                            ?>> PS4 </span> 
+                                            <span id='span-for-input-ps4'> PS4 </span> 
                                         </label>
                                     </li>
                                     <li>
@@ -418,33 +377,17 @@ if(isset($getsAtUrl)) {
                                                     if(isset(($_GET['plataforma']))){
                                                         switch ($_GET['plataforma']) {
                                                             case "1":
-                                                                echo "disabled";
+                                                                /* echo "disabled"; */;
                                                             break;
                                                             case "3":
-                                                                echo "disabled";
+                                                                /* echo "disabled"; */;
                                                             break;
                                                             default:
                                                         }
                                                     }
                                                 }
                                             ?>>
-                                            <span id='span-for-input-xbox'
-                                            <?php
-                                                if(isset(($_GET['plataforma'])) && $_GET['plataforma'] == '2') {
-                                                    
-                                                } else {
-                                                    if(isset(($_GET['plataforma']))){
-                                                        switch ($_GET['plataforma']) {
-                                                            case "1":
-                                                                echo "style='color: #969696'";
-                                                            break;
-                                                            case "3":
-                                                                echo "style='color: #969696'";
-                                                            break;
-                                                        }
-                                                    }
-                                                }
-                                            ?>> XBOX </span> 
+                                            <span id='span-for-input-xbox'> XBOX </span> 
                                         </label>
                                     </li>
                                     <li>
@@ -457,33 +400,17 @@ if(isset($getsAtUrl)) {
                                                     if(isset(($_GET['plataforma']))){
                                                         switch ($_GET['plataforma']) {
                                                             case "2":
-                                                                echo "disabled";
+                                                                /* echo "disabled"; */;
                                                             break;
                                                             case "1":
-                                                                echo "disabled";
+                                                                /* echo "disabled"; */;
                                                             break;
                                                             default:
                                                         }
                                                     }
                                                 }
                                             ?>>
-                                            <span id='span-for-input-pc'
-                                            <?php
-                                                if(isset(($_GET['plataforma'])) && $_GET['plataforma'] == '3') {
-                                                    
-                                                } else {
-                                                    if(isset(($_GET['plataforma']))){
-                                                        switch ($_GET['plataforma']) {
-                                                            case "2":
-                                                                echo "style='color: #969696'";
-                                                            break;
-                                                            case "1":
-                                                                echo "style='color: #969696'";
-                                                            break;
-                                                        }
-                                                    }
-                                                }
-                                            ?>> PC </span> 
+                                            <span id='span-for-input-pc'> PC </span> 
                                         </label>
                                     </li>
                                     <li>
@@ -500,31 +427,18 @@ if(isset($getsAtUrl)) {
                                                     if(isset($_GET['tipo'])){
                                                         switch ($_GET['tipo']) {
                                                             case "up":
-                                                                echo "disabled";
+                                                                /* echo "disabled"; */;
                                                             break;
                                                             default:
                                                         }
                                                     }
                                                 }
                                             ?>>
-                                            <span id='span-for-input-conta'
-                                            <?php
-                                                if(isset(($_GET['tipo'])) && $_GET['tipo'] == 'conta') {
-                                                    
-                                                } else {
-                                                    if(isset(($_GET['tipo']))){
-                                                        switch ($_GET['tipo']) {
-                                                            case "up":
-                                                                echo "style='color: #969696'";
-                                                            break;
-                                                        }
-                                                    }
-                                                }
-                                            ?>> Conta </span> 
+                                            <span id='span-for-input-conta'> Conta </span> 
                                         </label>
                                     </li>
                                     <li>
-                                        <label class="dropdown-line dropdown-line-item label-with-hover-function label-upgrade">
+                                        <label class="dropdown-line dropdown-line-item label-upgrade">
                                             <input class="form-check-input tipo input-upgrade" type="checkbox" value="up" name='tipo'
                                             <?php
                                                 if(isset(($_GET['tipo'])) && $_GET['tipo'] == 'up') {
@@ -533,27 +447,14 @@ if(isset($getsAtUrl)) {
                                                     if(isset($_GET['tipo'])){
                                                         switch ($_GET['tipo']) {
                                                             case "conta":
-                                                                echo "disabled";
+                                                                /* echo "disabled"; */;
                                                             break;
                                                             default:
                                                         }
                                                     }
                                                 }
                                             ?>>
-                                            <span id='span-for-input-upgrade'
-                                            <?php
-                                                if(isset(($_GET['tipo'])) && $_GET['tipo'] == 'up') {
-                                                    
-                                                } else {
-                                                    if(isset(($_GET['tipo']))){
-                                                        switch ($_GET['tipo']) {
-                                                            case "conta":
-                                                                echo "style='color: #969696'";
-                                                            break;
-                                                        }
-                                                    }
-                                                }
-                                            ?>> Upgrade </span> 
+                                            <span id='span-for-input-upgrade'> Upgrade </span> 
                                         </label>
                                     </li>
                                     <li>
@@ -612,7 +513,7 @@ if(isset($getsAtUrl)) {
                                     <h2>R$ $anuncioValor</h2>
                                 </div>
                                 <div class='row-center'>
-                                    <a href='product.php?id=$anuncioId' target='blank_'>
+                                    <a href='product.php?id=$anuncioId' target='blank_' class='see-more-link'>
                                         <div class='see-more'>
                                             VER MAIS
                                         </div>
@@ -683,7 +584,7 @@ if(isset($getsAtUrl)) {
         </main>
     </section>
 
-    <script type="text/javascript" src="assets/js/jquery.js"></script>
+
     <script type="text/javascript" src="assets/js/scriptMenu.js"></script>
     <script type="text/javascript" src="assets/js/home.js"></script>
     <script type="text/javascript" src="assets/js/bootstrap.5.0.2.bundle.min.js"></script>

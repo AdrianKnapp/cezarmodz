@@ -3,7 +3,7 @@ $(document).ready(function () {
 	const presentUrl = window.location.href;
 	const urlWithoutGetParameters = presentUrl.split('?')[0];
 
-	if (urlWithoutGetParameters === 'http://localhost/CezarModz/index.php') {
+	if (urlWithoutGetParameters === 'http://localhost/CezarModz/index.php' || presentUrl == 'http://localhost/CezarModz/') {
 		console.log(urlWithoutGetParameters);
 		$("#inicio-item-menu").addClass("item-menu-actived");
 		$("#inicio-bar-menu").addClass("item-bar-actived");
@@ -72,21 +72,21 @@ function changeStyleToLight() {
 }
 
 $(".input-menor").change(function () {
-	bloquearOutrosInputs(this, ".input-maior", "#span-for-input-maior", ".label-maior");
+	bloquearOutrosInputs(this, ".input-maior");
 	bloquearInputsPadroes("#inputs-form-filter-valor");
 });
 $(".input-maior").change(function () {
-	bloquearOutrosInputs(this, ".input-menor", "#span-for-input-menor", ".label-menor");
+	bloquearOutrosInputs(this, ".input-menor");
 	bloquearInputsPadroes("#inputs-form-filter-valor");
 });
 $(".input-ps4").change(function () {
-	bloquearOutrosInputs(this, ".input-xbox", "#span-for-input-xbox", ".label-xbox");
-	bloquearOutrosInputs(this, ".input-pc", "#span-for-input-pc", ".label-pc");
+	bloquearOutrosInputs(this, ".input-xbox");
+	bloquearOutrosInputs(this, ".input-pc");
 	bloquearInputsPadroes("#inputs-form-filter-plataforma");
 });
 $(".input-xbox").change(function () {
-	bloquearOutrosInputs(this, ".input-ps4", "#span-for-input-ps4", ".label-ps4");
-	bloquearOutrosInputs(this, ".input-pc", "#span-for-input-pc", ".label-pc");
+	bloquearOutrosInputs(this, ".input-ps4");
+	bloquearOutrosInputs(this, ".input-pc");
 	bloquearInputsPadroes("#inputs-form-filter-plataforma");
 });
 $(".input-pc").change(function () {
@@ -95,23 +95,18 @@ $(".input-pc").change(function () {
 	bloquearInputsPadroes("#inputs-form-filter-plataforma");
 });
 $(".input-conta").change(function () {
-	bloquearOutrosInputs(this, ".input-upgrade", "#span-for-input-upgrade", ".label-upgrade");;
+	bloquearOutrosInputs(this, ".input-upgrade");;
 	bloquearInputsPadroes("#inputs-form-filter-tipo");
 });
 $(".input-upgrade").change(function () {
-	bloquearOutrosInputs(this, ".input-conta", "#span-for-input-conta", ".label-conta");
+	bloquearOutrosInputs(this, ".input-conta");
 	bloquearInputsPadroes("#inputs-form-filter-tipo");
 });
 
-function bloquearOutrosInputs(elemento, elementoParaBloquear, elementToChangeColor, elementToBlockHoverEvent) {
+function bloquearOutrosInputs(elemento, elementoParaBloquear) {
 	if (elemento.checked) {
-		$(elementoParaBloquear).prop("disabled", true);
-		$(elementToChangeColor).get(0).style.setProperty("color", "#969696");
-		console.log(elementToChangeColor);
-		$(elementToBlockHoverEvent).removeClass("label-with-hover-function");
+		$(elementoParaBloquear).prop("checked", false);
 	} else {
-		$(elementoParaBloquear).prop("disabled", false);
-		$(elementToChangeColor).get(0).style.setProperty("color", "var(--color-texts)");
 	}
 }
 function bloquearInputsPadroes(tipoDoInput) {
