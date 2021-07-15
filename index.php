@@ -20,6 +20,7 @@ switch ($page) {
 
 if(isset($_GET['p'])){
     $page = $_GET['p']; // pegar a paginação.
+    $nextPage = $page + 1;
 }
 
 
@@ -32,7 +33,7 @@ if($page == 0) {
 $query = new Query($pdo, $linesToQuery);
 $structureOfQuery = '';
 $dbTotalLines =  $query->queryToCountDbDataLines($structureOfQuery);
-$totalNumPages = ceil($dbTotalLines / 10);
+$totalNumPages = floor($dbTotalLines / 10);
 
 if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) {
     $getsAtUrl = explode("?", $presentUrl);
@@ -179,7 +180,7 @@ if(isset($getsAtUrl)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Início - CezarModz </title>
+    <title> Início </title>
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/variaveis-globais.css">
     <link rel="stylesheet" href="assets/css/styleHome.css">
@@ -235,6 +236,13 @@ if(isset($getsAtUrl)) {
     <?php
         require 'menu.php';
     ?>
+    <section id="banner-section">
+        <div class="container">
+            <div class="banner-box">
+                BANNER
+            </div>
+        </div>
+    </section>
     <section id="store">
         <main class="container">
             <div class="row-left" style="display: flex; flex-direction:column">
@@ -594,7 +602,8 @@ if(isset($getsAtUrl)) {
                             }
                             echo "
                             <div class='anuncio-box'>
-                                <img src='imagens/$anuncioImagem' alt='Imagem'>
+                                <!-- <img src='imagens/$anuncioImagem' alt='Imagem'> -->
+                                <div class='image-template-box'> IMAGE </div>
                                 <div class='row-center'>
                                     <h1>  $anuncioNome </h1>
                                 </div>

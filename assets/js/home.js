@@ -13,9 +13,11 @@ $(document).ready(function () {
 	switch (pageStyle) {
 		case 'light':
 			changeStyleToLight();
+			$(":root").get(0).style.setProperty("--darkmode-toggle-system", "#525252");
 			break;
 		case 'dark':
 			$('#darkSwitch').prop('checked', true);
+			$(":root").get(0).style.setProperty("--darkmode-toggle-system", "#ff7c1f");
 			changeStyleToDark();
 	}
 });
@@ -23,8 +25,10 @@ $(document).ready(function () {
 $("#darkSwitch").change(function () {
 	if (darkSwitch.checked) {
 		changeStyleToDark();
+		$(":root").get(0).style.setProperty("--darkmode-toggle-system", "#ff7c1f");
 	} else {
 		changeStyleToLight();
+		$(":root").get(0).style.setProperty("--darkmode-toggle-system", "#525252");
 	}
 });
 
@@ -32,13 +36,14 @@ $("#darkSwitch").change(function () {
 function changeStyleToDark() {
 	$(".input-dark-mode-box img").attr("src", "assets/img/night-button.svg");
 	$(":root").get(0).style.setProperty("--color-texts", "#e8e8e8");
-	$(":root").get(0).style.setProperty("--background-color", "#1c1c1c");
+	$(":root").get(0).style.setProperty("--background-color", "#171717");
 	$(":root").get(0).style.setProperty("--offer-color", "white");
 	$(":root").get(0).style.setProperty("--color-texts-on-hover", "#171717");
 	$(":root").get(0).style.setProperty("--label-filter-bgcolor", "#545454");
-	$(":root").get(0).style.setProperty("--white-background-color", "#1c1c1c");
+	$(":root").get(0).style.setProperty("--white-background-color", "#171717");
 	$(":root").get(0).style.setProperty("--softdark-background-color", "#272727");
 	$(":root").get(0).style.setProperty("--color-border-to-darkmode", "#3b3b3b");
+	$(":root").get(0).style.setProperty("--color-pagination-button-disabled", "#595959");
 	$("header").css({
 		'border-bottom-width': '1px'
 	});
@@ -57,6 +62,7 @@ function changeStyleToLight() {
 	$(":root").get(0).style.setProperty("--white-background-color", "white");
 	$(":root").get(0).style.setProperty("--softdark-background-color", "white");
 	$(":root").get(0).style.setProperty("--color-border-to-darkmode", "white");
+	$(":root").get(0).style.setProperty("--color-pagination-button-disabled", "#b0b0b0");
 	$("header").css({
 		'border-bottom-width': '0'
 	});

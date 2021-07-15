@@ -420,7 +420,7 @@ if($dadosUsuario->rowCount() > 0){
                                     <div class='modal-body'>
                                         <form action='upgradeAnuncio.php?id=$produtoId' method='POST' class='formAddProduto' enctype='multipart/form-data'>
                                             <label for='upgradeNome' class='labelUpload'> Nome: </label> 
-                                            <input type='text' name='upgradeNome' placeholder='$produtoNome' class='inputUpload' required>
+                                            <input type='text' name='upgradeNome' placeholder='$produtoNome' class='inputUpload' >
                                             <label for='upgradeNome' > Plataforma: </label> 
                                             <select name='upgradePlataforma' class='select'>
                                                 <option class='option' value='1'> PS4 </option>
@@ -428,12 +428,12 @@ if($dadosUsuario->rowCount() > 0){
                                                 <option class='option' value='3'> PC </option>
                                             </select>
                                             <label for='upgradePreco' class='labelUpload'> Preço: </label> 
-                                            <input type='text' name='upgradePreco' placeholder='$produtoValor' class='inputUpload' required pattern='[0-9]+$'>
+                                            <input type='text' name='upgradePreco' placeholder='$produtoValor' class='inputUpload'  pattern='[0-9]+$'>
                                             <label for='upgradeDesc' class='labelUpload'> Descrição: </label> 
-                                            <input type='text' name='upgradeDesc' placeholder='$produtoDesc' class='inputUpload' required>
+                                            <input type='text' name='upgradeDesc' placeholder='$produtoDesc' class='inputUpload' >
                                 
                                             <label for='upgradeLink' class='labelUpload'> Instagram: </label> 
-                                            <input type='url' name='upgradeLink' placeholder='$produtoLink' class='inputUpload' required>
+                                            <input type='url' name='upgradeLink' placeholder='$produtoLink' class='inputUpload' >
                                             <div class='row-center'>
                                             <input type='submit' value='FINALIZAR' class='editarBotao'>
                                             </div>
@@ -544,7 +544,7 @@ if($usuarios->temPermissao("ADM")){
         <div class='modal-body'>
         <form action='uploadAnuncio.php' method='POST' class='formAddProduto' enctype='multipart/form-data'>
                 <label for='anuncioNome' class='labelUpload'> Nome: </label> 
-                <input type='text' name='anuncioNome' placeholder='Ex: PLATINIUM' class='inputUpload' required>
+                <input type='text' name='anuncioNome' placeholder='Ex: PLATINIUM' class='inputUpload' >
                 <label for='anuncioNome'> Plataforma: </label> 
                 <select name='anuncioPlataforma' class='select'>
                     <option class='option' value='1'> PS4 </option>
@@ -557,19 +557,19 @@ if($usuarios->temPermissao("ADM")){
                     <option class='option' value='up'> UPGRADE </option>
                 </select>
                 <label for='anuncioPreco' class='labelUpload'> Preço: </label> 
-                <input type='text' name='anuncioPreco' placeholder='Ex: 200 (Não coloque o cifrão)' class='inputUpload' required pattern='[0-9]+$'>
+                <input type='text' name='anuncioPreco' placeholder='Ex: 200 (Não coloque o cifrão)' class='inputUpload'  pattern='[0-9]+$'>
                 <label for='anuncioDesc' class='labelUpload'> Descrição: </label> 
-                <input type='text' name='anuncioDesc' placeholder='Ex: 10 MILHÕES, 10 CARROS, 2 IATES' class='inputUpload' required>
+                <input type='text' name='anuncioDesc' placeholder='Ex: 10 MILHÕES, 10 CARROS, 2 IATES' class='inputUpload' >
                 <label for='emailContaVenda' class='labelUpload'> Email: </label> 
                 <input type='email' name='emailContaVenda' placeholder='Email da conta a venda' class='inputUpload'>
                 <label for='senhaContaVenda' class='labelUpload'> Senha: </label> 
                 <input type='text' name='senhaContaVenda' placeholder='Senha da conta a venda' class='inputUpload'>
 
                 <label for='anuncioImg'> Imagem: </label> 
-                <input type='file' name='anuncioImg' class='uploadImagem' required>
+                <input type='file' name='anuncioImg' class='uploadImagem' >
 
                 <label for='anuncioLink' class='labelUpload'> Instagram: </label> 
-                <input type='url' name='anuncioLink' placeholder='Ex: https://www.instagram.com/p/CHIgKvpBEh3/' class='inputUpload' required>
+                <input type='url' name='anuncioLink' placeholder='Ex: https://www.instagram.com/p/CHIgKvpBEh3/' class='inputUpload' >
                 <input type='submit' value='INSERIR ANÚNCIO' class='editarBotao'>
                 
             </form>

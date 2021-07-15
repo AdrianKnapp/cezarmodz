@@ -59,6 +59,43 @@ p {
     font-weight: 500;
 }
 
+/* BANNER */
+#banner-section{
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+.banner-box{
+    height: 100px;
+    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
+    border: 1px solid var(--color-border-to-darkmode);
+    color: var(--color-texts);
+    font-family: var(--font-family);
+    border-radius: 5px;
+    background-color: var(--softdark-background-color);
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+.image-template-box{
+    width: 100%;
+    height: 165px;
+    color: var(--orange-color);
+    letter-spacing: 3px;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
 /* STORE */
 #store {
     display: flex;
@@ -96,8 +133,8 @@ p {
     padding: 0;
     margin: 0;
     border: 1px solid var(--color-texts);
-    border-radius: 3px;
-    padding: 3px 10px;
+    border-radius: 5px;
+    padding: 3px 15px;
     margin-right: 10px;
     transition: .2s;
     color: var(--color-texts);
@@ -213,9 +250,9 @@ p {
     transition: .2s;
 }
 .anuncio-box:hover {
-    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);
-    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);
-    -moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.4);
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.4);
     border: 1px solid #ababab;
 }
 .anuncio-box a{
@@ -367,22 +404,22 @@ p {
     border-bottom: 1px solid var(--color-texts);
 }
 .pagination-button-left-disabled{
-    border-top: 1px solid #b0b0b0;
-    border-left: 1px solid #b0b0b0;
-    border-bottom: 1px solid #b0b0b0;
-    color: #b0b0b0;
+    border-top: 1px solid var(--color-pagination-button-disabled);
+    border-left: 1px solid var(--color-pagination-button-disabled);
+    border-bottom: 1px solid var(--color-pagination-button-disabled);
+    color: var(--color-pagination-button-disabled);
     cursor: default;
 }
 .pagination-button-right-disabled{
-    border-top: 1px solid #b0b0b0;
-    border-right: 1px solid #b0b0b0;
-    border-bottom: 1px solid #b0b0b0;
-    color: #b0b0b0;
+    border-top: 1px solid var(--color-pagination-button-disabled);
+    border-right: 1px solid var(--color-pagination-button-disabled);
+    border-bottom: 1px solid var(--color-pagination-button-disabled);
+    color: var(--color-pagination-button-disabled);
     cursor: default;
 }
 .pagination-button-left-disabled:hover, .pagination-button-right-disabled:hover{
     background-color: var(--softdark-background-color);
-    color: #b0b0b0;
+    color: var(--color-pagination-button-disabled);
 }
 /* RODPÉ */
 footer {

@@ -2,15 +2,12 @@
     <div class="container">
         <div class="logo">
             <a href="index.php">
-                <img src="assets/img/LogoCezar5.png" alt="" width="80px">
-                <!-- LOGO -->
+                <!-- <img src="assets/img/LogoCezar5.png" alt="" width="80px"> -->
+                LOGO
             </a>
         </div>
         <div class="menu">
             <nav>
-                <div class="menuMobile">
-                    <img src="assets/img/menu.svg" alt="" width="40px" class="img-button">
-                </div>
                 <ul>
                     <a href="index.php ">
                         <li id='inicio-item-menu'> Início </li>
@@ -35,31 +32,14 @@
                 </ul>
             </nav>
         </div>
-        <div class="modalMenu">
-            <p class='fechar'> X </p>
-            <nav>
-                <ul>
-                    <a href="index.php">
-                        <li> INÍCIO </li>
-                    </a>
-                    <a href="sobrenos.php">
-                        <li> SOBRE NÓS</li>
-                    </a>
-                    <a href="parceiros.php">
-                        <li> PARCEIROS </li>
-                    </a>
-                    <a href="duvidas.php">
-                        <li> DÚVIDAS </li>
-                    </a>
-                    <a href="perfil.php">
-                        <li> MINHA CONTA </li>
-                    </a>
-                </ul>
-            </nav>
-        </div>
-        <div class="form-check form-switch">
+        <!-- <div class="form-check form-switch">
             <label class="custom-control-label" for="darkSwitch">DARK MODE</label>
             <input type="checkbox" class="form-check-input" id="darkSwitch">
+        </div> -->
+        
+        <div class="form-check form-switch">
+            <label class="custom-control-label" for="darkSwitch">DARK MODE</label>
+            <input id="darkSwitch" type="checkbox" class="toggle">
         </div>
     </div>
 </header>

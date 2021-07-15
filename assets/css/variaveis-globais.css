@@ -11,4 +11,6 @@
     --label-filter-bgcolor: #dbdbdb;
     --filtrar-button-on-hover: #ff7c1f;
     --color-border-to-darkmode: white;
+    --darkmode-toggle-system: #525252;
+    --color-pagination-button-disabled: #b0b0b0;
 }
