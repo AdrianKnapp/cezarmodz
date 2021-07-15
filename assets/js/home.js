@@ -31,14 +31,14 @@ $("#darkSwitch").change(function () {
 
 function changeStyleToDark() {
 	$(".input-dark-mode-box img").attr("src", "assets/img/night-button.svg");
-	$(":root").get(0).style.setProperty("--color-texts", "white");
+	$(":root").get(0).style.setProperty("--color-texts", "#e8e8e8");
 	$(":root").get(0).style.setProperty("--background-color", "#1c1c1c");
 	$(":root").get(0).style.setProperty("--offer-color", "white");
 	$(":root").get(0).style.setProperty("--color-texts-on-hover", "#171717");
 	$(":root").get(0).style.setProperty("--label-filter-bgcolor", "#545454");
 	$(":root").get(0).style.setProperty("--white-background-color", "#1c1c1c");
 	$(":root").get(0).style.setProperty("--softdark-background-color", "#272727");
-	$(":root").get(0).style.setProperty("--cor-border-to-darkmode", "#3b3b3b");
+	$(":root").get(0).style.setProperty("--color-border-to-darkmode", "#3b3b3b");
 	$("header").css({
 		'border-bottom-width': '1px'
 	});
@@ -49,14 +49,14 @@ function changeStyleToDark() {
 
 function changeStyleToLight() {
 	$(".input-dark-mode-box img").attr("src", "assets/img/sun-button.svg");
-	$(":root").get(0).style.setProperty("--color-texts", "#171717");
+	$(":root").get(0).style.setProperty("--color-texts", "#525252");
 	$(":root").get(0).style.setProperty("--background-color", "#ebebeb");
 	$(":root").get(0).style.setProperty("--offer-color", "#ff481f");
 	$(":root").get(0).style.setProperty("--color-texts-on-hover", "white");
 	$(":root").get(0).style.setProperty("--label-filter-bgcolor", "#dbdbdb");
 	$(":root").get(0).style.setProperty("--white-background-color", "white");
 	$(":root").get(0).style.setProperty("--softdark-background-color", "white");
-	$(":root").get(0).style.setProperty("--cor-border-to-darkmode", "white");
+	$(":root").get(0).style.setProperty("--color-border-to-darkmode", "white");
 	$("header").css({
 		'border-bottom-width': '0'
 	});
@@ -66,41 +66,43 @@ function changeStyleToLight() {
 }
 
 $(".input-menor").change(function () {
-	bloquearOutrosInputs(this, ".input-maior", "#span-for-input-maior");
+	bloquearOutrosInputs(this, ".input-maior", "#span-for-input-maior", ".label-maior");
 	bloquearInputsPadroes("#inputs-form-filter-valor");
 });
 $(".input-maior").change(function () {
-	bloquearOutrosInputs(this, ".input-menor", "#span-for-input-menor");
+	bloquearOutrosInputs(this, ".input-menor", "#span-for-input-menor", ".label-menor");
 	bloquearInputsPadroes("#inputs-form-filter-valor");
 });
 $(".input-ps4").change(function () {
-	bloquearOutrosInputs(this, ".input-xbox", "#span-for-input-xbox");
-	bloquearOutrosInputs(this, ".input-pc", "#span-for-input-pc");
+	bloquearOutrosInputs(this, ".input-xbox", "#span-for-input-xbox", ".label-xbox");
+	bloquearOutrosInputs(this, ".input-pc", "#span-for-input-pc", ".label-pc");
 	bloquearInputsPadroes("#inputs-form-filter-plataforma");
 });
 $(".input-xbox").change(function () {
-	bloquearOutrosInputs(this, ".input-ps4", "#span-for-input-ps4");
-	bloquearOutrosInputs(this, ".input-pc", "#span-for-input-pc");
+	bloquearOutrosInputs(this, ".input-ps4", "#span-for-input-ps4", ".label-ps4");
+	bloquearOutrosInputs(this, ".input-pc", "#span-for-input-pc", ".label-pc");
 	bloquearInputsPadroes("#inputs-form-filter-plataforma");
 });
 $(".input-pc").change(function () {
-	bloquearOutrosInputs(this, ".input-ps4", "#span-for-input-ps4");
-	bloquearOutrosInputs(this, ".input-xbox", "#span-for-input-xbox");
+	bloquearOutrosInputs(this, ".input-ps4", "#span-for-input-ps4", ".label-ps4");
+	bloquearOutrosInputs(this, ".input-xbox", "#span-for-input-xbox", ".label-xbox");
 	bloquearInputsPadroes("#inputs-form-filter-plataforma");
 });
 $(".input-conta").change(function () {
-	bloquearOutrosInputs(this, ".input-upgrade", "#span-for-input-upgrade");;
+	bloquearOutrosInputs(this, ".input-upgrade", "#span-for-input-upgrade", ".label-upgrade");;
 	bloquearInputsPadroes("#inputs-form-filter-tipo");
 });
 $(".input-upgrade").change(function () {
-	bloquearOutrosInputs(this, ".input-conta", "#span-for-input-conta");
+	bloquearOutrosInputs(this, ".input-conta", "#span-for-input-conta", ".label-conta");
 	bloquearInputsPadroes("#inputs-form-filter-tipo");
 });
 
-function bloquearOutrosInputs(elemento, elementoParaBloquear, elementToChangeColor) {
+function bloquearOutrosInputs(elemento, elementoParaBloquear, elementToChangeColor, elementToBlockHoverEvent) {
 	if (elemento.checked) {
 		$(elementoParaBloquear).prop("disabled", true);
 		$(elementToChangeColor).get(0).style.setProperty("color", "#969696");
+		console.log(elementToChangeColor);
+		$(elementToBlockHoverEvent).removeClass("label-with-hover-function");
 	} else {
 		$(elementoParaBloquear).prop("disabled", false);
 		$(elementToChangeColor).get(0).style.setProperty("color", "var(--color-texts)");
@@ -109,11 +111,9 @@ function bloquearOutrosInputs(elemento, elementoParaBloquear, elementToChangeCol
 function bloquearInputsPadroes(tipoDoInput) {
 	const input = $(tipoDoInput).get(0);
 	if (input.checked) {
-		console.log('Input checado');
 		$(tipoDoInput).prop("disabled", true);
 		$(tipoDoInput).prop("checked", false);
 	} else {
-		console.log('Input NÃO checado');
 		$(tipoDoInput).prop("disabled", false);
 		$(tipoDoInput).prop("checked", true);
 	}

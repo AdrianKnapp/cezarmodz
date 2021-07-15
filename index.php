@@ -30,8 +30,8 @@ if($page == 0) {
 }
 
 $query = new Query($pdo, $linesToQuery);
-$structure = '';
-$dbTotalLines =  $query->queryToCountDbDataLines($structure);
+$structureOfQuery = '';
+$dbTotalLines =  $query->queryToCountDbDataLines($structureOfQuery);
 $totalNumPages = ceil($dbTotalLines / 10);
 
 if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) {
@@ -54,97 +54,97 @@ if(isset($_GET['valor']) || isset($_GET['plataforma']) || isset($_GET['tipo'])) 
     
 
     if($plat != '' && $val != '' && $tipo != ''){
-        $structure = "
+        $structureOfQuery = "
         WHERE pt.plataforma = $plat
         AND pt.disponibilidade = 0
         AND pt.tipo = '$tipo'
         ORDER BY pt.valor $val
         ";
-        if($query->queryFilter($structure)){
-            $dbTotalLines =  $query->queryToCountDbDataLines($structure);
+        if($query->queryFilter($structureOfQuery)){
+            $dbTotalLines =  $query->queryToCountDbDataLines($structureOfQuery);
             $totalNumPages = ceil($dbTotalLines / 10);
-            $buscarAnuncios = $query->queryFilter($structure);
+            $buscarAnuncios = $query->queryFilter($structureOfQuery);
             $_SESSION['anuncios'] = '';
         } else {
             $_SESSION['alertaAnuncio'] = '';
         }
     } else if($plat != '' && $val != ''){
-        $structure = "
+        $structureOfQuery = "
         WHERE pt.plataforma = $plat
         AND pt.disponibilidade = 0
         ORDER BY pt.valor $val
         ";
-        if($query->queryFilter($structure)){
-            $dbTotalLines =  $query->queryToCountDbDataLines($structure);
+        if($query->queryFilter($structureOfQuery)){
+            $dbTotalLines =  $query->queryToCountDbDataLines($structureOfQuery);
             $totalNumPages = ceil($dbTotalLines / 10);
-            $buscarAnuncios = $query->queryFilter($structure);
+            $buscarAnuncios = $query->queryFilter($structureOfQuery);
             $_SESSION['anuncios'] = '';
         } else {
             $_SESSION['alertaAnuncio'] = '';
         }
     } else if($plat != '' && $tipo != ''){
-        $structure = "
+        $structureOfQuery = "
         WHERE pt.plataforma = $plat
         AND pt.disponibilidade = 0
         AND pt.tipo = '$tipo'
         ";
-        if($query->queryFilter($structure)){
-            $dbTotalLines =  $query->queryToCountDbDataLines($structure);
+        if($query->queryFilter($structureOfQuery)){
+            $dbTotalLines =  $query->queryToCountDbDataLines($structureOfQuery);
             $totalNumPages = ceil($dbTotalLines / 10);
-            $buscarAnuncios = $query->queryFilter($structure);
+            $buscarAnuncios = $query->queryFilter($structureOfQuery);
             $_SESSION['anuncios'] = '';
         } else {
             $_SESSION['alertaAnuncio'] = '';
         }
     } else if($val != '' && $tipo != ''){
-        $structure = "
+        $structureOfQuery = "
         WHERE pt.disponibilidade = 0
         AND pt.tipo = '$tipo'
         ORDER BY pt.valor $val
         ";
-        if($query->queryFilter($structure)){
-            $dbTotalLines =  $query->queryToCountDbDataLines($structure);
+        if($query->queryFilter($structureOfQuery)){
+            $dbTotalLines =  $query->queryToCountDbDataLines($structureOfQuery);
             $totalNumPages = ceil($dbTotalLines / 10);
-            $buscarAnuncios = $query->queryFilter($structure);
+            $buscarAnuncios = $query->queryFilter($structureOfQuery);
             $_SESSION['anuncios'] = '';
         } else {
             $_SESSION['alertaAnuncio'] = '';
         }
     } else if($plat != ''){
-        $structure = "
+        $structureOfQuery = "
             WHERE pt.plataforma = $plat
             AND pt.disponibilidade = 0
         ";
-        if($query->queryFilter($structure)){
-            $dbTotalLines =  $query->queryToCountDbDataLines($structure);
+        if($query->queryFilter($structureOfQuery)){
+            $dbTotalLines =  $query->queryToCountDbDataLines($structureOfQuery);
             $totalNumPages = ceil($dbTotalLines / 10);
-            $buscarAnuncios = $query->queryFilter($structure);
+            $buscarAnuncios = $query->queryFilter($structureOfQuery);
             $_SESSION['anuncios'] = '';
         } else {
             $_SESSION['alertaAnuncio'] = '';
         }
     } else if($val != ''){
-        $structure = "
+        $structureOfQuery = "
             WHERE pt.disponibilidade = 0
             ORDER BY pt.valor $val
         ";
-        if($query->queryFilter($structure)){
-            $dbTotalLines =  $query->queryToCountDbDataLines($structure);
+        if($query->queryFilter($structureOfQuery)){
+            $dbTotalLines =  $query->queryToCountDbDataLines($structureOfQuery);
             $totalNumPages = ceil($dbTotalLines / 10);
-            $buscarAnuncios = $query->queryFilter($structure);
+            $buscarAnuncios = $query->queryFilter($structureOfQuery);
             $_SESSION['anuncios'] = '';
         } else {
             $_SESSION['alertaAnuncio'] = '';
         }
     } else if($tipo != ''){
-        $structure = "
+        $structureOfQuery = "
             WHERE pt.tipo = '$tipo'
             AND pt.disponibilidade = 0
         ";
-        if($query->queryFilter($structure)){
-            $dbTotalLines =  $query->queryToCountDbDataLines($structure);
+        if($query->queryFilter($structureOfQuery)){
+            $dbTotalLines =  $query->queryToCountDbDataLines($structureOfQuery);
             $totalNumPages = ceil($dbTotalLines / 10);
-            $buscarAnuncios = $query->queryFilter($structure);
+            $buscarAnuncios = $query->queryFilter($structureOfQuery);
             $_SESSION['anuncios'] = '';
         } else {
             $_SESSION['alertaAnuncio'] = '';
@@ -236,7 +236,7 @@ if(isset($getsAtUrl)) {
         require 'menu.php';
     ?>
     <section id="store">
-        <div class="container">
+        <main class="container">
             <div class="row-left" style="display: flex; flex-direction:column">
                 <div class="filter">
                     <form method='GET' action="index.php?p=<?php echo $page.$urlToPagination;?>">
@@ -293,7 +293,7 @@ if(isset($getsAtUrl)) {
                                 <ul class="dropdown-menu">
                                     <li class="dropdown-line dropdown-item-title"> Preço </li>
                                     <li>
-                                        <label class="dropdown-line dropdown-line-item">
+                                        <label class="dropdown-line dropdown-line-item label-with-hover-function label-menor">
                                             <input class="form-check-input preco input-menor" type="checkbox" value="ASC" name='valor' id='input-menor'
                                             <?php
                                                 if(isset(($_GET['valor'])) && $_GET['valor'] == 'ASC') {
@@ -325,7 +325,7 @@ if(isset($getsAtUrl)) {
                                         </label>
                                     </li>
                                     <li>
-                                        <label class="dropdown-line dropdown-line-item">
+                                        <label class="dropdown-line dropdown-line-item label-with-hover-function label-maior">
                                             <input class="form-check-input preco input-maior" type="checkbox" value="DESC" name='valor'
                                             <?php
                                                 if(isset(($_GET['valor'])) && $_GET['valor'] == 'DESC') {
@@ -363,7 +363,7 @@ if(isset($getsAtUrl)) {
                                     </li>
                                     <li class="dropdown-line dropdown-item-title"> Plataforma </li>
                                     <li>
-                                        <label class="dropdown-line dropdown-line-item">
+                                        <label class="dropdown-line dropdown-line-item label-with-hover-function label-ps4">
                                             <input class="form-check-input plataforma input-ps4" type="checkbox" value="1" name='plataforma'
                                             <?php
                                                 if(isset(($_GET['plataforma'])) && $_GET['plataforma'] == '1') {
@@ -401,7 +401,7 @@ if(isset($getsAtUrl)) {
                                         </label>
                                     </li>
                                     <li>
-                                        <label class="dropdown-line dropdown-line-item">
+                                        <label class="dropdown-line dropdown-line-item label-with-hover-function label-xbox">
                                             <input class="form-check-input plataforma input-xbox" type="checkbox" value="2" name='plataforma'
                                             <?php
                                                 if(isset(($_GET['plataforma'])) && $_GET['plataforma'] == '2') {
@@ -440,7 +440,7 @@ if(isset($getsAtUrl)) {
                                         </label>
                                     </li>
                                     <li>
-                                        <label class="dropdown-line dropdown-line-item">
+                                        <label class="dropdown-line dropdown-line-item label-with-hover-function label-pc">
                                             <input class="form-check-input plataforma input-pc" type="checkbox" value="3" name='plataforma'
                                             <?php
                                                 if(isset(($_GET['plataforma'])) && $_GET['plataforma'] == '3') {
@@ -483,7 +483,7 @@ if(isset($getsAtUrl)) {
                                     </li>
                                     <li class="dropdown-line dropdown-item-title"> Tipo </li>
                                     <li>
-                                        <label class="dropdown-line dropdown-line-item">
+                                        <label class="dropdown-line dropdown-line-item label-with-hover-function label-conta">
                                             <input class="form-check-input tipo input-conta" type="checkbox" value="conta" name='tipo'
                                             <?php
                                                 if(isset(($_GET['tipo'])) && $_GET['tipo'] == 'conta') {
@@ -516,7 +516,7 @@ if(isset($getsAtUrl)) {
                                         </label>
                                     </li>
                                     <li>
-                                        <label class="dropdown-line dropdown-line-item">
+                                        <label class="dropdown-line dropdown-line-item label-with-hover-function label-upgrade">
                                             <input class="form-check-input tipo input-upgrade" type="checkbox" value="up" name='tipo'
                                             <?php
                                                 if(isset(($_GET['tipo'])) && $_GET['tipo'] == 'up') {
@@ -567,81 +567,69 @@ if(isset($getsAtUrl)) {
                             ?>
                         </div>
                     </form>
-            </div>
-                <button class='abrirFiltros'> FILTROS </button>
-        </div>
-        <div class="products-box">
-            <?php
-                if(isset($_SESSION['anuncios'])){
-                    foreach($buscarAnuncios->fetchAll() as $anuncios):
-                        $anuncioId = $anuncios['id_produto'];
-                        $anuncioPlat = $anuncios['nome_plat'];
-                        $anuncioNome = $anuncios['nome'];
-                        $anuncioTipo = $anuncios['tipo'];
-                        $anuncioImagem = $anuncios['img_address'];
-                        $anuncioValor = $anuncios['valor'];
-                        $porcentagem =  20 / 100 * $anuncioValor;
-                        $anuncioDesconto = $anuncioValor + $porcentagem;
-
-                        switch($anuncioTipo){
-                            case 'up':
-                                $anuncioTipo = 'UPGRADE';
-                                $classeTipoAnuncio = 'highlight-upgrade';
-                            break;
-                            case 'conta':
-                                $anuncioTipo = 'CONTA';
-                                $classeTipoAnuncio = 'highlight-conta';
-                            break;
-                        }
-                        /* switch($anuncioPlat){
-                            case 'PS4':
-                                $platformColor = '#3777bf';
-                            break;
-                            case 'XBOX':
-                                $platformColor = '#37bf90';
-                            break;
-                            case 'PC':
-                                $platformColor = '#ff7c1f';
-                            break;
-                        } */
-                        echo "
-                        <div class='anuncio-box'>
-                            <img src='imagens/$anuncioImagem' alt='Imagem'>
-                            <div class='row-center'>
-                                <h1>  $anuncioNome </h1>
-                            </div>
-                            <h4 id='anuncioDesconto'>R$ $anuncioDesconto</h4>
-                            <div class='row-center'>
-                                <h2>R$ $anuncioValor</h2>
-                            </div>
-                            <div class='row-center'>
-                                <a href='product.php?id=$anuncioId' target='blank_'>
-                                    <div class='see-more'>
-                                        VER MAIS
-                                    </div>
-                                </a>
-                            </div>
-                            <div class='row-right anuncio-plataforma' >
-                                <span class='$classeTipoAnuncio'> $anuncioTipo </span>
-                                <span> $anuncioPlat </span>
-                                
-                            </div>
-                        </div>";
-                    endforeach;
-                }  
-            ?>
-        </div>
-        <?php
-            if(!isset($_SESSION['anuncios'])){
-                echo "
-                <div class='without-anuncios'>
-                    Não há anúncios.
                 </div>
-                <div class='space-100'></div>
-                ";
-            }  unset($_SESSION['anuncios']);
-        ?>
-        <div class="pagination-inputs-box">
+            </div>
+            <div class="products-box">
+                <?php
+                    if(isset($_SESSION['anuncios'])){
+                        foreach($buscarAnuncios->fetchAll() as $anuncios):
+                            $anuncioId = $anuncios['id_produto'];
+                            $anuncioPlat = $anuncios['nome_plat'];
+                            $anuncioNome = $anuncios['nome'];
+                            $anuncioTipo = $anuncios['tipo'];
+                            $anuncioImagem = $anuncios['img_address'];
+                            $anuncioValor = $anuncios['valor'];
+                            $porcentagem =  20 / 100 * $anuncioValor;
+                            $anuncioDesconto = $anuncioValor + $porcentagem;
+
+                            switch($anuncioTipo){
+                                case 'up':
+                                    $anuncioTipo = 'UPGRADE';
+                                    $classeTipoAnuncio = 'highlight-upgrade';
+                                break;
+                                case 'conta':
+                                    $anuncioTipo = 'CONTA';
+                                    $classeTipoAnuncio = 'highlight-conta';
+                                break;
+                            }
+                            echo "
+                            <div class='anuncio-box'>
+                                <img src='imagens/$anuncioImagem' alt='Imagem'>
+                                <div class='row-center'>
+                                    <h1>  $anuncioNome </h1>
+                                </div>
+                                <h4>R$ $anuncioDesconto</h4>
+                                <div class='row-center'>
+                                    <h2>R$ $anuncioValor</h2>
+                                </div>
+                                <div class='row-center'>
+                                    <a href='product.php?id=$anuncioId' target='blank_'>
+                                        <div class='see-more'>
+                                            VER MAIS
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class='row-right anuncio-plataforma' >
+                                    <span class='$classeTipoAnuncio'> $anuncioTipo </span>
+                                    <span> $anuncioPlat </span>
+                                    
+                                </div>
+                            </div>";
+                        endforeach;
+                    }  
+                ?>
+            </div>
+            <?php
+                if(!isset($_SESSION['anuncios'])){
+                    echo "
+                    <div class='without-anuncios'>
+                        Não há anúncios.
+                    </div>
+                    <div class='space-100'></div>
+                    ";
+                }  unset($_SESSION['anuncios']);
+            ?>
+            <div class="pagination-inputs-box">
                 <div class="pagination-inputs">
                     <a href="<?php
                                 if($page > 0 ){
@@ -651,6 +639,9 @@ if(isset($getsAtUrl)) {
                                 }?>" class="pagination-input-previous">
                         <button type="button" class="pagination-button pagination-button-left"> ANTERIOR </button>
                     </a>
+                    <div class="box-between-pagination-buttons">
+                        <span><?php echo $page+1;?></span> de <span><?php echo $totalNumPages;?></span>
+                    </div>
                     <a href="<?php 
                                 if($page >= $totalNumPages - 1) {
                                     echo "index.php";
@@ -661,51 +652,27 @@ if(isset($getsAtUrl)) {
                         <button type="button" class="pagination-button pagination-button-right"> PRÓXIMA </button>
                     </a>
                 </div>
-        </div>
-        <footer id="footer">
-            <div class="container">
-                <div class="footer-left footer-box">
-                    <h3> Contato via E-mail </h3>
-                    <h5><a href="mailto:contato@cezarmodz.com" target="blank_"> Contato comercial </a></h5>
-                    <h5><a href="mailto:suporte@cezarmodz.com" target="blank_"> Suporte ao cliente </a></h5>
-                </div>
-                <div class="footer-right footer-box">
-                    <h3> Redes sociais </h3>
-                    <h5><a href="https://www.instagram.com/cezarmodz/?hl=pt-br" target="blank_"> Instagram </a></h5>
-                    <h5><a href="https://www.facebook.com/CezarMods" target="blank_"> Facebook </a></h5>
-                </div>
-                <div class="footer-bottom  footer-box">
-                    <h6> Todos direitos reservados </h6>
-                    <h6> Desenvolvido por <a href="https://flow.page/adrianknapp" target="blank_">Adrian Knapp</a>  </h6>
-                </div>
             </div>
-        </footer>
+            <footer id="footer">
+                <div class="container">
+                    <div class="footer-left footer-box">
+                        <h3> Contato via E-mail </h3>
+                        <h5><a href="mailto:contato@cezarmodz.com" target="blank_"> Contato comercial </a></h5>
+                        <h5><a href="mailto:suporte@cezarmodz.com" target="blank_"> Suporte ao cliente </a></h5>
+                    </div>
+                    <div class="footer-right footer-box">
+                        <h3> Redes sociais </h3>
+                        <h5><a href="https://www.instagram.com/cezarmodz/?hl=pt-br" target="blank_"> Instagram </a></h5>
+                        <h5><a href="https://www.facebook.com/CezarMods" target="blank_"> Facebook </a></h5>
+                    </div>
+                    <div class="footer-bottom  footer-box">
+                        <h6> Todos direitos reservados </h6>
+                        <h6> Desenvolvido por <a href="https://flow.page/adrianknapp" target="blank_">Adrian Knapp</a>  </h6>
+                    </div>
+                </div>
+            </footer>
+        </main>
     </section>
-
-    <!-- MODAL FILTRO RESPONSIVO -->
-    <div class="filtroPopUp">
-        <form method="GET" class='formFiltros'>
-            <select name="valor" class="select">
-                <option class="option" value=""> PREÇO </option>
-                <option class="option" value="ASC"  <?php if(isset($val)) echo ($val=="ASC")?'selected="selected"':'' ?>> Menor - Maior </option>
-                <option class="option" value="DESC"  <?php if(isset($val)) echo ($val=="DESC")?'selected="selected"':'' ?>> Maior - Menor </option>
-            </select>
-            <select name="plataforma" class="select">
-                <option class="option" value=""> PLATAFORMA </option>
-                <option class="option" value="1" <?php if(isset($plat)) echo ($plat=="1")?'selected="selected"':'' ?>> PS4 </option>
-                <option class="option" value="2" <?php if(isset($plat)) echo ($plat=="2")?'selected="selected"':'' ?>> XBOX </option>
-                <option class="option" value="3" <?php if(isset($plat)) echo ($plat=="3")?'selected="selected"':'' ?>> PC </option>
-            </select>
-            <select name="tipo" class="select">
-                <option class="option" value=""> TIPO </option>
-                <option class="option" value="conta" <?php if(isset($tipo)) echo ($tipo=="conta")?'selected="selected"':'' ?>> CONTA </option>
-                <option class="option" value="up" <?php if(isset($tipo)) echo ($tipo=="up")?'selected="selected"':'' ?>> UPGRADE </option>
-            </select>
-            <button type="submit" class='limparButton filtrar'> FILTRAR </button>
-        </form>
-    <button class='limparButton' onclick='location.href="index.php"'> LIMPAR </button>
-    <button class='cancelModal'> CANCELAR </button>
-    </div>
 
     <script type="text/javascript" src="assets/js/jquery.js"></script>
     <script type="text/javascript" src="assets/js/scriptMenu.js"></script>

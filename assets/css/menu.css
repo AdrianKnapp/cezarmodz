@@ -15,7 +15,7 @@ header {
   -moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: var(--cor-border-to-darkmode);
+  border-bottom-color: var(--color-border-to-darkmode);
   background-color: var(--softdark-background-color);
 }
 header .container {
