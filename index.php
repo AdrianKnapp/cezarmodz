@@ -235,6 +235,7 @@ if(isset($getsAtUrl)) {
 </head>
 <body>
     <?php
+        require 'loader.php';
         require 'menu.php';
     ?>
     <section id="banner-section">
@@ -303,7 +304,7 @@ if(isset($getsAtUrl)) {
                                     <li class="dropdown-line dropdown-item-title"> Preço </li>
                                     <li>
                                         <label class="dropdown-line dropdown-line-item label-with-hover-function label-menor">
-                                            <input class="form-check-input preco input-menor" type="checkbox" value="ASC" name='valor' id='input-menor'
+                                            <input class="dropdown-checkbox preco input-menor" type="checkbox" value="ASC" name='valor' id='input-menor'
                                             <?php
                                                 if(isset(($_GET['valor'])) && $_GET['valor'] == 'ASC') {
                                                     echo 'checked';
@@ -322,7 +323,7 @@ if(isset($getsAtUrl)) {
                                     </li>
                                     <li>
                                         <label class="dropdown-line dropdown-line-item label-with-hover-function label-maior">
-                                            <input class="form-check-input preco input-maior" type="checkbox" value="DESC" name='valor'
+                                            <input class="dropdown-checkbox preco input-maior" type="checkbox" value="DESC" name='valor'
                                             <?php
                                                 if(isset(($_GET['valor'])) && $_GET['valor'] == 'DESC') {
                                                     echo 'checked';
@@ -341,13 +342,10 @@ if(isset($getsAtUrl)) {
                                             <span id='span-for-input-maior'> Maior </span> 
                                         </label>
                                     </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
                                     <li class="dropdown-line dropdown-item-title"> Plataforma </li>
                                     <li>
                                         <label class="dropdown-line dropdown-line-item label-with-hover-function label-ps4">
-                                            <input class="form-check-input plataforma input-ps4" type="checkbox" value="1" name='plataforma'
+                                            <input class="dropdown-checkbox plataforma input-ps4" type="checkbox" value="1" name='plataforma'
                                             <?php
                                                 if(isset(($_GET['plataforma'])) && $_GET['plataforma'] == '1') {
                                                     echo 'checked';
@@ -369,7 +367,7 @@ if(isset($getsAtUrl)) {
                                     </li>
                                     <li>
                                         <label class="dropdown-line dropdown-line-item label-with-hover-function label-xbox">
-                                            <input class="form-check-input plataforma input-xbox" type="checkbox" value="2" name='plataforma'
+                                            <input class="dropdown-checkbox plataforma input-xbox" type="checkbox" value="2" name='plataforma'
                                             <?php
                                                 if(isset(($_GET['plataforma'])) && $_GET['plataforma'] == '2') {
                                                     echo 'checked';
@@ -392,7 +390,7 @@ if(isset($getsAtUrl)) {
                                     </li>
                                     <li>
                                         <label class="dropdown-line dropdown-line-item label-with-hover-function label-pc">
-                                            <input class="form-check-input plataforma input-pc" type="checkbox" value="3" name='plataforma'
+                                            <input class="dropdown-checkbox plataforma input-pc" type="checkbox" value="3" name='plataforma'
                                             <?php
                                                 if(isset(($_GET['plataforma'])) && $_GET['plataforma'] == '3') {
                                                     echo 'checked';
@@ -413,13 +411,10 @@ if(isset($getsAtUrl)) {
                                             <span id='span-for-input-pc'> PC </span> 
                                         </label>
                                     </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
                                     <li class="dropdown-line dropdown-item-title"> Tipo </li>
                                     <li>
                                         <label class="dropdown-line dropdown-line-item label-with-hover-function label-conta">
-                                            <input class="form-check-input tipo input-conta" type="checkbox" value="conta" name='tipo'
+                                            <input class="dropdown-checkbox tipo input-conta" type="checkbox" value="conta" name='tipo'
                                             <?php
                                                 if(isset(($_GET['tipo'])) && $_GET['tipo'] == 'conta') {
                                                     echo 'checked';
@@ -439,7 +434,7 @@ if(isset($getsAtUrl)) {
                                     </li>
                                     <li>
                                         <label class="dropdown-line dropdown-line-item label-upgrade">
-                                            <input class="form-check-input tipo input-upgrade" type="checkbox" value="up" name='tipo'
+                                            <input class="dropdown-checkbox tipo input-upgrade" type="checkbox" value="up" name='tipo'
                                             <?php
                                                 if(isset(($_GET['tipo'])) && $_GET['tipo'] == 'up') {
                                                     echo 'checked';
@@ -543,7 +538,7 @@ if(isset($getsAtUrl)) {
                 <div class="pagination-inputs">
                     <a href="<?php
                                 if($page > 0 ){
-                                    echo "index.php?".$urlToPagination."p=".$previousPage;
+                                    echo "?".$urlToPagination."p=".$previousPage;
                                 } else {
                                     echo "index.php";
                                 }?>" class="pagination-input-previous">
@@ -556,7 +551,7 @@ if(isset($getsAtUrl)) {
                                 if($page >= $totalNumPages - 1) {
                                     echo "index.php";
                                 } else {
-                                    echo "index.php?".$urlToPagination."p=".$nextPage;
+                                    echo "?".$urlToPagination."p=".$nextPage;
                                 }
                             ?>" class="pagination-input-next">
                         <button type="button" class="pagination-button pagination-button-right"> PRÓXIMA </button>
