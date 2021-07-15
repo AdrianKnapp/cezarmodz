@@ -37,9 +37,10 @@ function changeStyleToDark() {
 	$(":root").get(0).style.setProperty("--color-texts-on-hover", "#171717");
 	$(":root").get(0).style.setProperty("--label-filter-bgcolor", "#545454");
 	$(":root").get(0).style.setProperty("--white-background-color", "#1c1c1c");
-	$(":root").get(0).style.setProperty("--anuncio-background-color", "#272727");
+	$(":root").get(0).style.setProperty("--softdark-background-color", "#272727");
+	$(":root").get(0).style.setProperty("--cor-border-to-darkmode", "#3b3b3b");
 	$("header").css({
-		'border-bottom': '1px solid #949494'
+		'border-bottom-width': '1px'
 	});
 	$("#filter-button").removeClass("btn-outline-dark").addClass("btn-outline-light");
 	$(".dropdown-menu").addClass("dropdown-menu-dark");
@@ -54,9 +55,10 @@ function changeStyleToLight() {
 	$(":root").get(0).style.setProperty("--color-texts-on-hover", "white");
 	$(":root").get(0).style.setProperty("--label-filter-bgcolor", "#dbdbdb");
 	$(":root").get(0).style.setProperty("--white-background-color", "white");
-	$(":root").get(0).style.setProperty("--anuncio-background-color", "white");
+	$(":root").get(0).style.setProperty("--softdark-background-color", "white");
+	$(":root").get(0).style.setProperty("--cor-border-to-darkmode", "white");
 	$("header").css({
-		'border-bottom': '0'
+		'border-bottom-width': '0'
 	});
 	$("#filter-button").removeClass("btn-outline-light").addClass("btn-outline-dark");
 	$(".dropdown-menu").removeClass("dropdown-menu-dark");
