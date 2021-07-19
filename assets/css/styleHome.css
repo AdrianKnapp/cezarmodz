@@ -146,7 +146,43 @@ p {
     box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
     -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
     -moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
+    animation-name: slidenavAnimation;
+    animation-duration: .2s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    transition: .2s;
+  
+    -webkit-animation-name: slidenavAnimation;
+    -webkit-animation-duration: .2s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease;
+    -webkit-animation-fill-mode: forwards;
+  
+    -moz-animation-name: slidenavAnimation;
+    -moz-animation-duration: .2s;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: ease;
+    -moz-animation-fill-mode: forwards;
 }
+@keyframes slidenavAnimation {
+    from {
+      opacity: 0;
+     
+    }
+    to {
+      opacity: 1;
+      
+    }
+  }
+  @-webkit-keyframes slidenavAnimation {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 .button-dropdown {
     color: var(--orange-color);
     border: 1px solid var(--orange-color);

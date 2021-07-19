@@ -250,7 +250,7 @@ if(isset($getsAtUrl)) {
             <div class="row-left" style="display: flex; flex-direction:column">
                 <div class="filter">
                     <form method='GET' action="index.php?p=<?php echo $page.$urlToPagination;?>">
-                        <input type="checkbox" class="inputs-form-filter" name="valor"  value="" id="inputs-form-filter-valor"
+                        <input type="checkbox" class="inputs-form-filter js-preco" name="valor"  value="" id="inputs-form-filter-valor"
                             <?php
                                 if(!isset($_GET['valor'])) {
                                     echo "checked";
@@ -264,7 +264,7 @@ if(isset($getsAtUrl)) {
                                     }
                                 }
                             ?>>
-                        <input type="checkbox" class="inputs-form-filter" name="plataforma" value="" id="inputs-form-filter-plataforma"
+                        <input type="checkbox" class="inputs-form-filter js-plataforma" name="plataforma" value="" id="inputs-form-filter-plataforma"
                             <?php
                                 if(!isset($_GET['plataforma'])) {
                                     echo "checked";
@@ -279,7 +279,7 @@ if(isset($getsAtUrl)) {
                                 }
                             ?>>
                         
-                        <input type="checkbox" class="inputs-form-filter" name="tipo" value="" id="inputs-form-filter-tipo"
+                        <input type="checkbox" class="inputs-form-filter js-tipo" name="tipo" value="" id="inputs-form-filter-tipo"
                             <?php
                                 if(!isset($_GET['tipo'])) {
                                     echo "checked";
