@@ -454,7 +454,7 @@ if(isset($getsAtUrl)) {
                                     </li>
                                     <li>
                                         <div class="dropdown-line dropdown-line-item">
-                                            <input class="submit-button-filter" onsubmit="return checkEmptyCheckbox()" type="submit" value="Submit">
+                                            <input class="submit-button-filter" type="submit" value="Submit">
                                         </div>
                                     </li>
                                 </ul>

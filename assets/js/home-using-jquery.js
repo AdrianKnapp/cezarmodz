@@ -34,7 +34,6 @@ $("#darkSwitch").change(function () {
 
 
 function changeStyleToDark() {
-	$(".input-dark-mode-box img").attr("src", "assets/img/night-button.svg");
 	$(":root").get(0).style.setProperty("--color-texts", "#e8e8e8");
 	$(":root").get(0).style.setProperty("--background-color", "#171717");
 	$(":root").get(0).style.setProperty("--offer-color", "white");
@@ -47,13 +46,10 @@ function changeStyleToDark() {
 	$("header").css({
 		'border-bottom-width': '1px'
 	});
-	$("#filter-button").removeClass("btn-outline-dark").addClass("btn-outline-light");
-	$(".dropdown-menu").addClass("dropdown-menu-dark");
 	localStorage.setItem('pageStyle','dark');
 }
 
 function changeStyleToLight() {
-	$(".input-dark-mode-box img").attr("src", "assets/img/sun-button.svg");
 	$(":root").get(0).style.setProperty("--color-texts", "#525252");
 	$(":root").get(0).style.setProperty("--background-color", "#ebebeb");
 	$(":root").get(0).style.setProperty("--offer-color", "#ff481f");
@@ -66,7 +62,6 @@ function changeStyleToLight() {
 	$("header").css({
 		'border-bottom-width': '0'
 	});
-	$("#filter-button").removeClass("btn-outline-light").addClass("btn-outline-dark");
 	$(".dropdown-menu").removeClass("dropdown-menu-dark");
 	localStorage.setItem('pageStyle','light');
 }
@@ -119,6 +114,8 @@ function bloquearInputsPadroes(tipoDoInput) {
 		$(tipoDoInput).prop("checked", true);
 	}
 }
+
+
 
 $(".filtrar-button").click(function () {
 	checkEmptyCheckbox();
