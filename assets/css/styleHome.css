@@ -212,6 +212,7 @@ p {
 .dropdown-item-title{
     font-weight: 500 !important;
     margin-top: 10px;
+    color: var(--color-texts);
 }
 .dropdown-line{
     width: 100%;
